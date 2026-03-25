@@ -44,7 +44,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":fbpDsl"))
+                implementation("io.codenode:fbpDsl")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
                 // Ktor Client (KMP) for HTTPS requests

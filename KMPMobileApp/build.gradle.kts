@@ -55,7 +55,7 @@ kotlin {
             // Multiplatform datetime support
             implementation("org.jetbrains.kotlinx:kotlinx-datetime:${LocalVersions.datetime}")
             // FBP DSL and generated modules (KMP - works on all platforms)
-            implementation(project(":fbpDsl"))
+            implementation("io.codenode:fbpDsl")
             implementation(project(":StopWatch"))
             implementation(project(":UserProfiles"))
             implementation(project(":persistence"))
@@ -67,7 +67,7 @@ kotlin {
 
         commonTest.dependencies {
             implementation(kotlin("test"))
-            implementation(project(":fbpDsl"))
+            implementation("io.codenode:fbpDsl")
             implementation(project(":StopWatch"))
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.8.0")
         }

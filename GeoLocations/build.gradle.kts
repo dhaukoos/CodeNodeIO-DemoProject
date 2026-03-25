@@ -44,7 +44,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":fbpDsl"))
+                implementation("io.codenode:fbpDsl")
                 implementation(project(":persistence"))
                 // Koin DI
                 implementation("io.insert-koin:koin-core:4.0.0")
