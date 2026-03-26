@@ -20,6 +20,62 @@ allprojects {
     version = "0.1.0-SNAPSHOT"
 }
 
+// Configuration to collect all runtime JARs for the graphEditor launch
+val graphEditorRuntime by configurations.creating {
+    isCanBeResolved = true
+    isCanBeConsumed = false
+}
+
+dependencies {
+    // graphEditor and all tool dependencies (via composite build substitution)
+    graphEditorRuntime("io.codenode:graphEditor") {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+    // All project modules as runtime dependencies
+    graphEditorRuntime(project(":StopWatch")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+    graphEditorRuntime(project(":UserProfiles")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+    graphEditorRuntime(project(":GeoLocations")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+    graphEditorRuntime(project(":Addresses")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+    graphEditorRuntime(project(":EdgeArtFilter")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+    graphEditorRuntime(project(":WeatherForecast")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+    graphEditorRuntime(project(":persistence")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+    graphEditorRuntime(project(":nodes")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+}
+
 /**
  * Launches the CodeNodeIO graphEditor with all project modules on the classpath.
  *
@@ -35,30 +91,9 @@ tasks.register<JavaExec>("runGraphEditor") {
 
     mainClass.set("io.codenode.grapheditor.MainKt")
 
-    // Build classpath: tool JARs + project module JARs + all transitive dependencies
-    val toolBuildDir = gradle.includedBuild("CodeNodeIO").projectDir
-
-    classpath = files(
-        // Tool module JARs (via composite build)
-        fileTree(toolBuildDir.resolve("graphEditor/build/libs")) { include("*.jar") },
-        fileTree(toolBuildDir.resolve("fbpDsl/build/libs")) { include("*.jar") },
-        fileTree(toolBuildDir.resolve("circuitSimulator/build/libs")) { include("*.jar") },
-        fileTree(toolBuildDir.resolve("kotlinCompiler/build/libs")) { include("*.jar") },
-        // Project module JARs
-        subprojects.filter { it.name != "KMPMobileApp" }.map { subproject ->
-            fileTree(subproject.layout.buildDirectory.dir("libs")) { include("*.jar") }
-        }
-    )
+    // Use Gradle's fully-resolved classpath (includes all transitive dependencies)
+    classpath = graphEditorRuntime
 
     // Pass project directory so the graphEditor discovers modules here
     environment("CODENODE_PROJECT_DIR", projectDir.absolutePath)
-
-    // Ensure everything is compiled before running
-    dependsOn(
-        subprojects.filter { it.name != "KMPMobileApp" }.map { ":${it.name}:jvmJar" }
-    )
-    dependsOn(gradle.includedBuild("CodeNodeIO").task(":graphEditor:jvmJar"))
-    dependsOn(gradle.includedBuild("CodeNodeIO").task(":fbpDsl:jvmJar"))
-    dependsOn(gradle.includedBuild("CodeNodeIO").task(":circuitSimulator:jvmJar"))
-    dependsOn(gradle.includedBuild("CodeNodeIO").task(":kotlinCompiler:jvmJar"))
 }
