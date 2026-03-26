@@ -43,6 +43,9 @@ rootProject.name = "CodeNodeIO-DemoProject"
 includeBuild("../CodeNodeIO") {
     dependencySubstitution {
         substitute(module("io.codenode:fbpDsl")).using(project(":fbpDsl"))
+        substitute(module("io.codenode:graphEditor")).using(project(":graphEditor"))
+        substitute(module("io.codenode:circuitSimulator")).using(project(":circuitSimulator"))
+        substitute(module("io.codenode:kotlinCompiler")).using(project(":kotlinCompiler"))
     }
 }
 
