@@ -45,6 +45,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("io.codenode:fbpDsl")
+                compileOnly("io.codenode:graphEditor")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
                 // KMP-compatible lifecycle support (works on all platforms)
