@@ -4,7 +4,6 @@ out/
 
 # Gradle
 .gradle/
-!gradle/wrapper/gradle-wrapper.jar
 
 # IDE
 .idea/
@@ -17,6 +16,9 @@ out/
 *.jar
 *.war
 *.ear
+
+# Keep Gradle wrapper jar (must come after *.jar exclusion)
+!gradle/wrapper/gradle-wrapper.jar
 
 # OS
 .DS_Store
