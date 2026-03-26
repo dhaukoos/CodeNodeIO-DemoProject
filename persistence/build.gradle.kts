@@ -44,6 +44,8 @@ kotlin {
                 // Room KMP persistence — exposed as api since public types extend RoomDatabase
                 api("androidx.room:room-runtime:2.8.4")
                 implementation("androidx.sqlite:sqlite-bundled:2.6.2")
+                // Koin DI for DAO registration
+                implementation("io.insert-koin:koin-core:4.0.0")
             }
         }
 
