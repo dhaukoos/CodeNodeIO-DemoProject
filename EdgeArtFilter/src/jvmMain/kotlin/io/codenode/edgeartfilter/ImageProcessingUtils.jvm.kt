@@ -15,7 +15,8 @@ actual fun createImageBitmapFromPixels(pixels: IntArray, width: Int, height: Int
 }
 
 actual fun pickImageFile(): ImageData? {
-    val chooser = JFileChooser().apply {
+    val startDir = java.io.File(System.getProperty("user.home"))
+    val chooser = JFileChooser(startDir).apply {
         dialogTitle = "Select Image"
         fileFilter = FileNameExtensionFilter("PNG Images", "png")
         isAcceptAllFileFilterUsed = false
