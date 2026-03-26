@@ -94,6 +94,15 @@ tasks.register<JavaExec>("runGraphEditor") {
     // Use Gradle's fully-resolved classpath (includes all transitive dependencies)
     classpath = graphEditorRuntime
 
+    // Set working directory to the project root (important for JFileChooser on macOS)
+    workingDir = projectDir
+
     // Pass project directory so the graphEditor discovers modules here
     environment("CODENODE_PROJECT_DIR", projectDir.absolutePath)
+
+    // macOS: required for proper AWT/Swing behavior (file dialogs, menus)
+    if (System.getProperty("os.name").lowercase().contains("mac")) {
+        jvmArgs("-Dapple.awt.application.appearance=system")
+        jvmArgs("-Dapple.laf.useScreenMenuBar=true")
+    }
 }
