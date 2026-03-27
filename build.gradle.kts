@@ -106,3 +106,32 @@ tasks.register<JavaExec>("runGraphEditor") {
         jvmArgs("-Dapple.laf.useScreenMenuBar=true")
     }
 }
+
+/**
+ * Writes the fully-resolved JVM runtime classpath to a file.
+ * The graphEditor reads this file to include all project module JARs + transitive dependencies
+ * when launched via `:graphEditor:run` from the CodeNodeIO tool repository.
+ *
+ * Run after building: ./gradlew jvmJar writeRuntimeClasspath
+ */
+tasks.register("writeRuntimeClasspath") {
+    description = "Write resolved runtime classpath for graphEditor consumption"
+    group = "build"
+
+    val outputFile = layout.buildDirectory.file("grapheditor-runtime-classpath.txt")
+    outputs.file(outputFile)
+
+    doLast {
+        // Use graphEditorRuntime which already resolves correctly, but filter out
+        // graphEditor/fbpDsl/circuitSimulator/kotlinCompiler JARs (the tool provides those)
+        val toolModuleNames = setOf("graphEditor", "fbpDsl", "circuitSimulator", "kotlinCompiler")
+        val projectEntries = graphEditorRuntime.files.filter { file ->
+            toolModuleNames.none { tool -> file.absolutePath.contains("/$tool/") }
+        }
+        outputFile.get().asFile.apply {
+            parentFile.mkdirs()
+            writeText(projectEntries.joinToString("\n") { it.absolutePath })
+        }
+        println("Wrote ${projectEntries.size} classpath entries to ${outputFile.get().asFile}")
+    }
+}
