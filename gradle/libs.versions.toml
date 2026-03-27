@@ -1,37 +1,44 @@
 [versions]
 # Build System
-gradle = "8.8"
 kotlin = "2.1.21"
-kotlinPoet = "2.2.0"
 agp = "8.13.2"
+ksp = "2.1.21-2.0.1"
 
 # Compose & UI
-compose = "1.10.0"
-composeDesktopResources = "1.10.0"
+compose = "1.7.3"
+composePlugin = "1.10.0"
 
-# Android (for KMPMobileApp)
+# Android
 androidx-activity-compose = "1.9.0"
-composeCompiler = "2.1.21"  # Matches Kotlin version for Kotlin 2.0+ architecture
+
+# Lifecycle
+lifecycle = "2.8.0"
 
 # Coroutines & Serialization
 coroutines = "1.8.0"
-serialization = "1.6.2"
+serialization = "1.6.0"
 
-# IntelliJ Platform
-intellijPlatformSdk = "2024.1"
+# Persistence
+room = "2.8.4"
+sqlite = "2.6.2"
+
+# Dependency Injection
+koin = "4.0.0"
+
+# Networking
+ktor = "3.1.1"
 
 # Testing
 junit5 = "5.10.1"
+junit4 = "4.13.2"
 
 [libraries]
 # Kotlin
-kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
-kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlin" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
 
 # Coroutines
 coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "coroutines" }
+coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 
 # Serialization
@@ -40,29 +47,35 @@ serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serializ
 # Compose Multiplatform
 compose-ui = { group = "org.jetbrains.compose.ui", name = "ui", version.ref = "compose" }
 compose-foundation = { group = "org.jetbrains.compose.foundation", name = "foundation", version.ref = "compose" }
-compose-material = { group = "org.jetbrains.compose.material", name = "material", version.ref = "compose" }
-compose-material-icons-extended = { group = "org.jetbrains.compose.material", name = "material-icons-extended", version.ref = "compose" }
+compose-material3 = { group = "org.jetbrains.compose.material3", name = "material3", version.ref = "compose" }
 compose-runtime = { group = "org.jetbrains.compose.runtime", name = "runtime", version.ref = "compose" }
+compose-ui-tooling-preview = { group = "org.jetbrains.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
 
-# Code Generation
-kotlinPoet = { group = "com.squareup", name = "kotlinpoet", version.ref = "kotlinPoet" }
+# Lifecycle
+lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
 
-# Testing
-junit5-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
-junit5-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
-junit5-all = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit5" }
+# Room Persistence
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+sqlite-bundled = { group = "androidx.sqlite", name = "sqlite-bundled", version.ref = "sqlite" }
+
+# Koin DI
+koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
+
+# Ktor Networking
+ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 
 # Android
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidx-activity-compose" }
 
-[bundles]
-coroutines = ["coroutines-core"]
-coroutines-swing = ["coroutines-core", "coroutines-swing"]
-serialization = ["serialization-json"]
-compose = ["compose-ui", "compose-foundation", "compose-material", "compose-runtime"]
-compose-extended = ["compose-ui", "compose-foundation", "compose-material", "compose-material-icons-extended", "compose-runtime"]
-kotlin = ["kotlin-stdlib", "kotlin-reflect"]
-junit5 = ["junit5-api", "junit5-engine"]
+# Testing
+junit5-all = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "junit5" }
+junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 
 [plugins]
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
@@ -70,7 +83,8 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-compose = { id = "org.jetbrains.compose", version.ref = "compose" }
+compose = { id = "org.jetbrains.compose", version.ref = "composePlugin" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+room = { id = "androidx.room", version.ref = "room" }

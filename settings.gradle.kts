@@ -15,7 +15,7 @@ pluginManagement {
         kotlin("jvm") version "2.1.21"
         kotlin("multiplatform") version "2.1.21"
         kotlin("plugin.serialization") version "2.1.21"
-        id("org.jetbrains.compose") version "1.11.1"
+        id("org.jetbrains.compose") version "1.10.0"
         id("org.jetbrains.kotlin.plugin.compose") version "2.1.21"
         id("org.jetbrains.kotlin.plugin.parcelize") version "2.1.21"
         id("com.google.devtools.ksp") version "2.1.21-2.0.1"
@@ -35,18 +35,34 @@ dependencyResolutionManagement {
 
 rootProject.name = "CodeNodeIO-DemoProject"
 
-// Composite build: use local CodeNodeIO fbpDsl until it's published as a Maven artifact.
-// The CodeNodeIO repo should be a sibling directory (../CodeNodeIO).
-// To switch to a published version later:
-//   1. Remove this includeBuild block
-//   2. Add a version to the fbpDsl dependency: "io.codenode:fbpDsl:1.0.0"
-includeBuild("../CodeNodeIO") {
-    dependencySubstitution {
-        substitute(module("io.codenode:fbpDsl")).using(project(":fbpDsl"))
-        substitute(module("io.codenode:graphEditor")).using(project(":graphEditor"))
-        substitute(module("io.codenode:circuitSimulator")).using(project(":circuitSimulator"))
-        substitute(module("io.codenode:kotlinCompiler")).using(project(":kotlinCompiler"))
+// =============================================================================
+// Composite build: local CodeNodeIO tool repository
+// =============================================================================
+// Currently uses a local checkout of the CodeNodeIO tool repository as a
+// sibling directory (../CodeNodeIO). This provides fbpDsl, preview-api,
+// graphEditor, and other tool modules at compile time.
+//
+// To switch to published Maven artifacts (when fbpDsl and preview-api are released):
+//   1. Remove the entire includeBuild block below
+//   2. Add versions to module dependencies in build files:
+//        "io.codenode:fbpDsl"       → "io.codenode:fbpDsl:1.0.0"
+//        "io.codenode:preview-api"  → "io.codenode:preview-api:1.0.0"
+//   3. The graphEditor/circuitSimulator/kotlinCompiler substitutions can be
+//      removed entirely (only needed for runGraphEditor task and IDE integration)
+// =============================================================================
+val codeNodeToolRepo = file("../CodeNodeIO")
+if (codeNodeToolRepo.isDirectory) {
+    includeBuild(codeNodeToolRepo) {
+        dependencySubstitution {
+            substitute(module("io.codenode:fbpDsl")).using(project(":fbpDsl"))
+            substitute(module("io.codenode:graphEditor")).using(project(":graphEditor"))
+            substitute(module("io.codenode:circuitSimulator")).using(project(":circuitSimulator"))
+            substitute(module("io.codenode:kotlinCompiler")).using(project(":kotlinCompiler"))
+        }
     }
+} else {
+    logger.warn("CodeNodeIO tool repository not found at ../CodeNodeIO — composite build disabled. " +
+        "Published Maven artifacts required for fbpDsl and preview-api.")
 }
 
 // Shared modules
