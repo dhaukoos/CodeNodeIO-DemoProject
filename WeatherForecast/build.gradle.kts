@@ -45,7 +45,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("io.codenode:fbpDsl")
-                compileOnly("io.codenode:graphEditor")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
                 // Ktor Client (KMP) for HTTPS requests
@@ -73,6 +72,7 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
+                compileOnly("io.codenode:graphEditor")
                 // Ktor CIO engine for JVM/Desktop
                 implementation("io.ktor:ktor-client-cio:3.1.1")
             }

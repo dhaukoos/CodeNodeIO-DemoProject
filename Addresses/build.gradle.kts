@@ -45,7 +45,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("io.codenode:fbpDsl")
-                compileOnly("io.codenode:graphEditor")
                 implementation(project(":persistence"))
                 // Koin DI
                 implementation("io.insert-koin:koin-core:4.0.0")
@@ -63,6 +62,11 @@ kotlin {
             }
         }
 
+        val jvmMain by getting {
+            dependencies {
+                compileOnly("io.codenode:graphEditor")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
