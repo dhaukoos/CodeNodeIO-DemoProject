@@ -14,7 +14,7 @@ import io.codenode.fbpdsl.model.ExecutionState
 import io.codenode.stopwatch.StopWatchViewModel
 import io.codenode.stopwatch.userInterface.StopWatch
 import io.codenode.stopwatch.userInterface.StopWatchScreen
-import io.codenode.grapheditor.ui.PreviewRegistry
+import io.codenode.previewapi.PreviewRegistry
 
 /**
  * Provides preview composables that render StopWatch components,

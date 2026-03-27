@@ -55,6 +55,7 @@ if (codeNodeToolRepo.isDirectory) {
     includeBuild(codeNodeToolRepo) {
         dependencySubstitution {
             substitute(module("io.codenode:fbpDsl")).using(project(":fbpDsl"))
+            substitute(module("io.codenode:preview-api")).using(project(":preview-api"))
             substitute(module("io.codenode:graphEditor")).using(project(":graphEditor"))
             substitute(module("io.codenode:circuitSimulator")).using(project(":circuitSimulator"))
             substitute(module("io.codenode:kotlinCompiler")).using(project(":kotlinCompiler"))

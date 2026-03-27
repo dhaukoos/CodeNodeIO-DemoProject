@@ -7,7 +7,7 @@ package io.codenode.geolocations.userInterface
 
 import io.codenode.geolocations.GeoLocationsViewModel
 import io.codenode.geolocations.userInterface.GeoLocations
-import io.codenode.grapheditor.ui.PreviewRegistry
+import io.codenode.previewapi.PreviewRegistry
 
 /**
  * Provides preview composables that render GeoLocations components,

@@ -7,7 +7,7 @@ package io.codenode.addresses.userInterface
 
 import io.codenode.addresses.AddressesViewModel
 import io.codenode.addresses.userInterface.Addresses
-import io.codenode.grapheditor.ui.PreviewRegistry
+import io.codenode.previewapi.PreviewRegistry
 
 /**
  * Provides preview composables that render Addresses components,

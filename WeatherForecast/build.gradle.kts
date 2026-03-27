@@ -72,7 +72,7 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                compileOnly("io.codenode:graphEditor")
+                implementation("io.codenode:preview-api")
                 // Ktor CIO engine for JVM/Desktop
                 implementation("io.ktor:ktor-client-cio:3.1.1")
             }

@@ -7,7 +7,7 @@ package io.codenode.edgeartfilter.userInterface
 
 import io.codenode.edgeartfilter.EdgeArtFilterViewModel
 import io.codenode.edgeartfilter.userInterface.EdgeArtFilter
-import io.codenode.grapheditor.ui.PreviewRegistry
+import io.codenode.previewapi.PreviewRegistry
 
 /**
  * Provides preview composables that render EdgeArtFilter components,

@@ -7,7 +7,7 @@ package io.codenode.weatherforecast.userInterface
 
 import io.codenode.weatherforecast.WeatherForecastViewModel
 import io.codenode.weatherforecast.userInterface.WeatherForecastUI
-import io.codenode.grapheditor.ui.PreviewRegistry
+import io.codenode.previewapi.PreviewRegistry
 
 /**
  * Provides preview composables that render WeatherForecast components,

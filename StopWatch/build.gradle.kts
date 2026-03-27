@@ -62,7 +62,7 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                compileOnly("io.codenode:graphEditor")
+                implementation("io.codenode:preview-api")
             }
         }
         val commonTest by getting {

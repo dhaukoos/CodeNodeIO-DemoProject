@@ -7,7 +7,7 @@ package io.codenode.userprofiles.userInterface
 
 import io.codenode.userprofiles.UserProfilesViewModel
 import io.codenode.userprofiles.userInterface.UserProfiles
-import io.codenode.grapheditor.ui.PreviewRegistry
+import io.codenode.previewapi.PreviewRegistry
 
 /**
  * Provides preview composables that render UserProfiles components,
