@@ -5,6 +5,8 @@
 
 package io.codenode.persistence
 
+import io.codenode.persistence.userprofile.UserProfileDao
+import io.codenode.persistence.address.AddressDao
 import org.koin.core.context.GlobalContext
 import org.koin.dsl.module
 

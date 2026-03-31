@@ -89,6 +89,9 @@ tasks.register<JavaExec>("runGraphEditor") {
     description = "Launch CodeNodeIO graphEditor with all project modules"
     group = "application"
 
+    // Ensure classpath file is up-to-date for `:graphEditor:run` launches from the tool repo
+    dependsOn("writeRuntimeClasspath")
+
     mainClass.set("io.codenode.grapheditor.MainKt")
 
     // Use Gradle's fully-resolved classpath (includes all transitive dependencies)
@@ -112,7 +115,7 @@ tasks.register<JavaExec>("runGraphEditor") {
  * The graphEditor reads this file to include all project module JARs + transitive dependencies
  * when launched via `:graphEditor:run` from the CodeNodeIO tool repository.
  *
- * Run after building: ./gradlew jvmJar writeRuntimeClasspath
+ * Automatically run by `runGraphEditor`. Can also be run manually: ./gradlew writeRuntimeClasspath
  */
 tasks.register("writeRuntimeClasspath") {
     description = "Write resolved runtime classpath for graphEditor consumption"

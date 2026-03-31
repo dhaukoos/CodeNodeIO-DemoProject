@@ -15,9 +15,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import io.codenode.userprofiles.generated.UserProfilesControllerInterface
-import io.codenode.persistence.UserProfileDao
-import io.codenode.persistence.UserProfileEntity
-import io.codenode.persistence.UserProfileRepository
+import io.codenode.persistence.userprofile.UserProfileDao
+import io.codenode.persistence.userprofile.UserProfileEntity
+import io.codenode.persistence.userprofile.UserProfileRepository
 import io.codenode.iptypes.UserProfile
 import io.codenode.userprofiles.toUserProfile
 

@@ -17,8 +17,8 @@ import kotlinx.coroutines.launch
 import io.codenode.addresses.generated.AddressesControllerInterface
 import io.codenode.iptypes.Address
 import io.codenode.addresses.toAddress
-import io.codenode.persistence.AddressDao
-import io.codenode.persistence.AddressRepository
+import io.codenode.persistence.address.AddressDao
+import io.codenode.persistence.address.AddressRepository
 
 // ===== MODULE PROPERTIES START =====
 // Auto-generated from source output ports and sink input ports. Do not edit this section manually.

@@ -6,7 +6,7 @@
 package io.codenode.addresses
 
 import io.codenode.iptypes.Address
-import io.codenode.persistence.AddressEntity
+import io.codenode.persistence.address.AddressEntity
 
 /** Convert IP type to persistence entity */
 fun Address.toEntity() = AddressEntity(id = id, Street = street, City = city, State = state, Zip = zip)

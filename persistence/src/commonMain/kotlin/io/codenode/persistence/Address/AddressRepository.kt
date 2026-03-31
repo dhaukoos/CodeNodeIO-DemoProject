@@ -1,4 +1,4 @@
-package io.codenode.persistence
+package io.codenode.persistence.address
 
 import kotlinx.coroutines.flow.Flow
 

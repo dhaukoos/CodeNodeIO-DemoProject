@@ -1,7 +1,8 @@
-package io.codenode.persistence
+package io.codenode.persistence.userprofile
 
 import androidx.room.Dao
 import androidx.room.Query
+import io.codenode.persistence.BaseDao
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -6,7 +6,7 @@
 package io.codenode.userprofiles
 
 import io.codenode.iptypes.UserProfile
-import io.codenode.persistence.UserProfileEntity
+import io.codenode.persistence.userprofile.UserProfileEntity
 
 /** Convert IP type to persistence entity */
 fun UserProfile.toEntity() = UserProfileEntity(id = id, name = name, age = age, isActive = isActive)

@@ -13,7 +13,7 @@ import io.codenode.fbpdsl.runtime.PortSpec
 import io.codenode.fbpdsl.runtime.ProcessResult2
 import io.codenode.iptypes.Address
 import io.codenode.addresses.toEntity
-import io.codenode.persistence.AddressRepository
+import io.codenode.persistence.address.AddressRepository
 import io.codenode.addresses.AddressesPersistence
 
 /**

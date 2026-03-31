@@ -1,7 +1,7 @@
 package io.codenode.addresses
 
-import io.codenode.persistence.AddressDao
-import io.codenode.persistence.AddressRepository
+import io.codenode.persistence.address.AddressDao
+import io.codenode.persistence.address.AddressRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.dsl.module
