@@ -45,6 +45,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation("io.codenode:fbpDsl")
+                implementation(project(":iptypes"))
                 implementation(project(":persistence"))
                 // Koin DI
                 implementation("io.insert-koin:koin-core:4.0.0")

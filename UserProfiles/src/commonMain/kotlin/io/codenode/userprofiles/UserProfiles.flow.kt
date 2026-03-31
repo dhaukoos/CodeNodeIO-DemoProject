@@ -2,7 +2,7 @@ package io.codenode.userprofiles
 
 import io.codenode.fbpdsl.dsl.*
 import io.codenode.fbpdsl.model.*
-import io.codenode.userprofiles.iptypes.UserProfile
+import io.codenode.iptypes.UserProfile
 
 val userProfilesFlowGraph = flowGraph("UserProfiles", version = "1.0.0") {
     targetPlatform(FlowGraph.TargetPlatform.KMP_ANDROID)

@@ -15,8 +15,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import io.codenode.addresses.generated.AddressesControllerInterface
-import io.codenode.addresses.iptypes.Address
-import io.codenode.addresses.iptypes.toAddress
+import io.codenode.iptypes.Address
+import io.codenode.addresses.toAddress
 import io.codenode.persistence.AddressDao
 import io.codenode.persistence.AddressRepository
 

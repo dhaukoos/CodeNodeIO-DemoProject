@@ -13,8 +13,8 @@ import io.codenode.fbpdsl.runtime.PortSpec
 import io.codenode.fbpdsl.runtime.ProcessResult2
 import io.codenode.persistence.UserProfileRepository
 import io.codenode.userprofiles.UserProfilesPersistence
-import io.codenode.userprofiles.iptypes.UserProfile
-import io.codenode.userprofiles.iptypes.toEntity
+import io.codenode.iptypes.UserProfile
+import io.codenode.userprofiles.toEntity
 
 /**
  * Processor node that performs CRUD operations on user profiles.

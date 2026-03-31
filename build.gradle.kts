@@ -44,11 +44,6 @@ dependencies {
             attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
         }
     }
-    graphEditorRuntime(project(":GeoLocations")) {
-        attributes {
-            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
-        }
-    }
     graphEditorRuntime(project(":Addresses")) {
         attributes {
             attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
@@ -70,6 +65,11 @@ dependencies {
         }
     }
     graphEditorRuntime(project(":nodes")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
+    graphEditorRuntime(project(":iptypes")) {
         attributes {
             attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
         }

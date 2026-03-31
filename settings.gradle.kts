@@ -67,6 +67,7 @@ if (codeNodeToolRepo.isDirectory) {
 }
 
 // Shared modules
+include(":iptypes")
 include(":persistence")
 include(":nodes")
 
@@ -76,7 +77,6 @@ include(":KMPMobileApp")
 // Generated modules (from FlowGraph compilation)
 include(":StopWatch")
 include(":UserProfiles")
-include(":GeoLocations")
 include(":Addresses")
 include(":EdgeArtFilter")
 include(":WeatherForecast")

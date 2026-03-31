@@ -11,8 +11,8 @@ import io.codenode.fbpdsl.model.CodeNodeType
 import io.codenode.fbpdsl.runtime.NodeRuntime
 import io.codenode.fbpdsl.runtime.PortSpec
 import io.codenode.fbpdsl.runtime.ProcessResult2
-import io.codenode.addresses.iptypes.Address
-import io.codenode.addresses.iptypes.toEntity
+import io.codenode.iptypes.Address
+import io.codenode.addresses.toEntity
 import io.codenode.persistence.AddressRepository
 import io.codenode.addresses.AddressesPersistence
 

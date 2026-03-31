@@ -1,6 +1,6 @@
 package io.codenode.addresses
 
-import io.codenode.addresses.iptypes.Address
+import io.codenode.iptypes.Address
 import io.codenode.fbpdsl.dsl.*
 import io.codenode.fbpdsl.model.*
 

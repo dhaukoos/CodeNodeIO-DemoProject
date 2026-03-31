@@ -18,8 +18,8 @@ import io.codenode.userprofiles.generated.UserProfilesControllerInterface
 import io.codenode.persistence.UserProfileDao
 import io.codenode.persistence.UserProfileEntity
 import io.codenode.persistence.UserProfileRepository
-import io.codenode.userprofiles.iptypes.UserProfile
-import io.codenode.userprofiles.iptypes.toUserProfile
+import io.codenode.iptypes.UserProfile
+import io.codenode.userprofiles.toUserProfile
 
 // ===== MODULE PROPERTIES START =====
 // Auto-generated from source output ports and sink input ports. Do not edit this section manually.

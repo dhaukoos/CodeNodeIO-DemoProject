@@ -12,7 +12,7 @@ import io.codenode.fbpdsl.runtime.NodeRuntime
 import io.codenode.fbpdsl.runtime.PortSpec
 import io.codenode.fbpdsl.runtime.ProcessResult3
 import io.codenode.userprofiles.UserProfilesState
-import io.codenode.userprofiles.iptypes.UserProfile
+import io.codenode.iptypes.UserProfile
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.launch

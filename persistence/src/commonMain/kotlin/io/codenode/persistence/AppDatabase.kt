@@ -5,11 +5,10 @@ import androidx.room.RoomDatabase
 import androidx.room.RoomDatabaseConstructor
 import androidx.room.ConstructedBy
 
-@Database(entities = [AddressEntity::class, GeoLocationEntity::class, UserProfileEntity::class], version = 2)
+@Database(entities = [AddressEntity::class, UserProfileEntity::class], version = 7)
 @ConstructedBy(AppDatabaseConstructor::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun addressDao(): AddressDao
-    abstract fun geoLocationDao(): GeoLocationDao
     abstract fun userProfileDao(): UserProfileDao
 }
 

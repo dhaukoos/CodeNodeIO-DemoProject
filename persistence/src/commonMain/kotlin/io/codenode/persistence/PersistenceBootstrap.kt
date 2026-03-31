@@ -24,7 +24,6 @@ object PersistenceBootstrap {
             val db = DatabaseModule.getDatabase()
             koin.loadModules(listOf(module {
                 single<UserProfileDao> { db.userProfileDao() }
-                single<GeoLocationDao> { db.geoLocationDao() }
                 single<AddressDao> { db.addressDao() }
             }))
         } catch (e: Exception) {

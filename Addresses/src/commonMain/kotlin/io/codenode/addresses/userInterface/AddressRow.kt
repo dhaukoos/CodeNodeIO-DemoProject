@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.codenode.addresses.iptypes.Address
+import io.codenode.iptypes.Address
 
 @Composable
 fun AddressRow(
