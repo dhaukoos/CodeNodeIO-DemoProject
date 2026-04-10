@@ -47,7 +47,7 @@ rootProject.name = "CodeNodeIO-DemoProject"
 //   2. Add versions to module dependencies in build files:
 //        "io.codenode:fbpDsl"       → "io.codenode:fbpDsl:1.0.0"
 //        "io.codenode:preview-api"  → "io.codenode:preview-api:1.0.0"
-//   3. The graphEditor/circuitSimulator/kotlinCompiler substitutions can be
+//   3. The graphEditor/circuitSimulator substitutions can be
 //      removed entirely (only needed for runGraphEditor task and IDE integration)
 // =============================================================================
 val codeNodeToolRepo = file("../CodeNodeIO")
@@ -58,7 +58,12 @@ if (codeNodeToolRepo.isDirectory) {
             substitute(module("io.codenode:preview-api")).using(project(":preview-api"))
             substitute(module("io.codenode:graphEditor")).using(project(":graphEditor"))
             substitute(module("io.codenode:circuitSimulator")).using(project(":circuitSimulator"))
-            substitute(module("io.codenode:kotlinCompiler")).using(project(":kotlinCompiler"))
+            substitute(module("io.codenode:flowGraph-types")).using(project(":flowGraph-types"))
+            substitute(module("io.codenode:flowGraph-persist")).using(project(":flowGraph-persist"))
+            substitute(module("io.codenode:flowGraph-inspect")).using(project(":flowGraph-inspect"))
+            substitute(module("io.codenode:flowGraph-execute")).using(project(":flowGraph-execute"))
+            substitute(module("io.codenode:flowGraph-generate")).using(project(":flowGraph-generate"))
+            substitute(module("io.codenode:flowGraph-compose")).using(project(":flowGraph-compose"))
         }
     }
 } else {

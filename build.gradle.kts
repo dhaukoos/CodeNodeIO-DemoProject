@@ -126,8 +126,10 @@ tasks.register("writeRuntimeClasspath") {
 
     doLast {
         // Use graphEditorRuntime which already resolves correctly, but filter out
-        // graphEditor/fbpDsl/circuitSimulator/kotlinCompiler JARs (the tool provides those)
-        val toolModuleNames = setOf("graphEditor", "fbpDsl", "circuitSimulator", "kotlinCompiler")
+        // graphEditor/fbpDsl/circuitSimulator/flowGraph-* JARs (the tool provides those)
+        val toolModuleNames = setOf("graphEditor", "fbpDsl", "circuitSimulator",
+            "flowGraph-types", "flowGraph-persist", "flowGraph-inspect",
+            "flowGraph-execute", "flowGraph-generate", "flowGraph-compose")
         val projectEntries = graphEditorRuntime.files.filter { file ->
             toolModuleNames.none { tool -> file.absolutePath.contains("/$tool/") }
         }
