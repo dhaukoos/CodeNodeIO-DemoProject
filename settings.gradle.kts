@@ -79,6 +79,9 @@ include(":nodes")
 // Mobile app module
 include(":KMPMobileApp")
 
+// Test/sandbox module
+include(":TestModule")
+
 // Generated modules (from FlowGraph compilation)
 include(":StopWatch")
 include(":UserProfiles")
