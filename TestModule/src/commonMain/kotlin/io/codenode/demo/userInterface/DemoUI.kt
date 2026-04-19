@@ -1,5 +1,5 @@
 /*
- * DemoUI - Calculator UI with input validation and results display
+ * DemoUI - Calculator UI composable (presentation only)
  * License: Apache 2.0
  */
 
@@ -16,14 +16,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.codenode.demo.DemoUIViewModel
+import io.codenode.demo.iptypes.CalculationResults
 
 @Composable
-fun DemoUI(modifier: Modifier = Modifier) {
+fun DemoUI(
+    viewModel: DemoUIViewModel,
+    modifier: Modifier = Modifier
+) {
     var textA by remember { mutableStateOf("") }
     var textB by remember { mutableStateOf("") }
     var errorA by remember { mutableStateOf(false) }
     var errorB by remember { mutableStateOf(false) }
-    var results by remember { mutableStateOf<CalculationResults?>(null) }
+    val results by viewModel.results.collectAsState()
 
     Column(
         modifier = modifier
@@ -38,18 +43,13 @@ fun DemoUI(modifier: Modifier = Modifier) {
             errorB = errorB,
             onTextAChanged = { textA = it; errorA = false },
             onTextBChanged = { textB = it; errorB = false },
-            onCalculate = {
+            onEmit = {
                 val a = textA.toDoubleOrNull()
                 val b = textB.toDoubleOrNull()
                 errorA = a == null
                 errorB = b == null
                 if (a != null && b != null) {
-                    results = CalculationResults(
-                        sum = a + b,
-                        difference = a - b,
-                        product = a * b,
-                        quotient = if (b != 0.0) a / b else Double.NaN
-                    )
+                    viewModel.emit(a, b)
                 }
             }
         )
@@ -68,7 +68,7 @@ private fun InputSection(
     errorB: Boolean,
     onTextAChanged: (String) -> Unit,
     onTextBChanged: (String) -> Unit,
-    onCalculate: () -> Unit
+    onEmit: () -> Unit
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text("Input", fontWeight = FontWeight.Bold, fontSize = 18.sp)
@@ -77,10 +77,10 @@ private fun InputSection(
         NumberField(label = "B", value = textB, isError = errorB, onValueChange = onTextBChanged)
 
         Button(
-            onClick = onCalculate,
+            onClick = onEmit,
             modifier = Modifier.align(Alignment.End)
         ) {
-            Text("Calculate")
+            Text("Emit")
         }
     }
 }
@@ -118,7 +118,7 @@ private fun ResultsSection(results: CalculationResults?) {
 
         if (results == null) {
             Text(
-                "Enter values and press Calculate",
+                "Enter values and press Emit",
                 color = Color.Gray,
                 fontSize = 14.sp
             )
@@ -154,10 +154,3 @@ private fun ResultRow(label: String, value: Double, errorText: String? = null) {
 private fun formatNumber(value: Double): String =
     if (value == value.toLong().toDouble()) value.toLong().toString()
     else "%.6g".format(value)
-
-data class CalculationResults(
-    val sum: Double,
-    val difference: Double,
-    val product: Double,
-    val quotient: Double
-)

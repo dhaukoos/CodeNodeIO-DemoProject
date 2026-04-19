@@ -30,6 +30,8 @@ kotlin {
             implementation("org.jetbrains.compose.material:material:${LocalVersions.compose}")
             implementation("org.jetbrains.compose.material:material-icons-extended:${LocalVersions.compose}")
             implementation("org.jetbrains.compose.ui:ui:${LocalVersions.compose}")
+            implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
+            implementation(libs.coroutines.core)
         }
         androidMain.dependencies {
             implementation("org.jetbrains.compose.ui:ui-tooling-preview:${LocalVersions.compose}")
