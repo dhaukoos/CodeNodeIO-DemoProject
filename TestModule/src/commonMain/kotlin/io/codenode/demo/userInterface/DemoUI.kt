@@ -16,7 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.codenode.demo.DemoUIViewModel
+import io.codenode.demo.saved.DemoUIViewModel
 import io.codenode.demo.iptypes.CalculationResults
 
 @Composable
@@ -49,7 +49,7 @@ fun DemoUI(
                 errorA = a == null
                 errorB = b == null
                 if (a != null && b != null) {
-                    viewModel.emit(a, b)
+                   // viewModel.emit(a, b)
                 }
             }
         )
