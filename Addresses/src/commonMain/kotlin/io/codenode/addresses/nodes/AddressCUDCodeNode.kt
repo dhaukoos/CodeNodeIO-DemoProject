@@ -11,7 +11,7 @@ import io.codenode.fbpdsl.model.CodeNodeType
 import io.codenode.fbpdsl.runtime.NodeRuntime
 import io.codenode.fbpdsl.runtime.PortSpec
 import io.codenode.fbpdsl.runtime.ProcessResult3
-import io.codenode.addresses.AddressesState
+import io.codenode.addresses.viewmodel.AddressesState
 import io.codenode.iptypes.Address
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.drop

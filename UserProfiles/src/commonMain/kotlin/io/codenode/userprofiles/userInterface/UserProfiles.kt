@@ -21,7 +21,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.codenode.userprofiles.UserProfilesViewModel
+import io.codenode.userprofiles.viewmodel.UserProfilesViewModel
 import io.codenode.iptypes.UserProfile
 
 @Composable

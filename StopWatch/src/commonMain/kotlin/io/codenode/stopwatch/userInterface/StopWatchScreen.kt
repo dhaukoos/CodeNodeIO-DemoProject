@@ -22,7 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import io.codenode.fbpdsl.model.ExecutionState
-import io.codenode.stopwatch.StopWatchViewModel
+import io.codenode.stopwatch.viewmodel.StopWatchViewModel
 
 /**
  * Data class to hold elapsed time components for the stopwatch.

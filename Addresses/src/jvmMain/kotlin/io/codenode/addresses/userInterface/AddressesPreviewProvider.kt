@@ -5,7 +5,7 @@
 
 package io.codenode.addresses.userInterface
 
-import io.codenode.addresses.AddressesViewModel
+import io.codenode.addresses.viewmodel.AddressesViewModel
 import io.codenode.addresses.userInterface.Addresses
 import io.codenode.previewapi.PreviewRegistry
 

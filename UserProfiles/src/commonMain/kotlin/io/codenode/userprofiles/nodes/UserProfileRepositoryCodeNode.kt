@@ -12,7 +12,7 @@ import io.codenode.fbpdsl.runtime.NodeRuntime
 import io.codenode.fbpdsl.runtime.PortSpec
 import io.codenode.fbpdsl.runtime.ProcessResult2
 import io.codenode.persistence.userprofile.UserProfileRepository
-import io.codenode.userprofiles.UserProfilesPersistence
+import io.codenode.userprofiles.persistence.UserProfilesPersistence
 import io.codenode.iptypes.UserProfile
 import io.codenode.userprofiles.toEntity
 

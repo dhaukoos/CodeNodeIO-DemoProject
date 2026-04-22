@@ -5,7 +5,7 @@
 
 package io.codenode.userprofiles.userInterface
 
-import io.codenode.userprofiles.UserProfilesViewModel
+import io.codenode.userprofiles.viewmodel.UserProfilesViewModel
 import io.codenode.userprofiles.userInterface.UserProfiles
 import io.codenode.previewapi.PreviewRegistry
 

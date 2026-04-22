@@ -5,7 +5,7 @@
 
 package io.codenode.weatherforecast.userInterface
 
-import io.codenode.weatherforecast.WeatherForecastViewModel
+import io.codenode.weatherforecast.viewmodel.WeatherForecastViewModel
 import io.codenode.weatherforecast.userInterface.WeatherForecastUI
 import io.codenode.previewapi.PreviewRegistry
 

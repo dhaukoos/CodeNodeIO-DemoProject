@@ -5,7 +5,7 @@
 
 package io.codenode.edgeartfilter.userInterface
 
-import io.codenode.edgeartfilter.EdgeArtFilterViewModel
+import io.codenode.edgeartfilter.viewmodel.EdgeArtFilterViewModel
 import io.codenode.edgeartfilter.userInterface.EdgeArtFilter
 import io.codenode.previewapi.PreviewRegistry
 

@@ -10,7 +10,7 @@ import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.model.CodeNodeType
 import io.codenode.fbpdsl.runtime.NodeRuntime
 import io.codenode.fbpdsl.runtime.PortSpec
-import io.codenode.userprofiles.UserProfilesState
+import io.codenode.userprofiles.viewmodel.UserProfilesState
 
 /**
  * Sink node that receives result and error values and updates UserProfilesState.

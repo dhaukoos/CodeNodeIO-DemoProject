@@ -11,7 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import io.codenode.fbpdsl.model.ExecutionState
-import io.codenode.stopwatch.StopWatchViewModel
+import io.codenode.stopwatch.viewmodel.StopWatchViewModel
 import io.codenode.stopwatch.userInterface.StopWatch
 import io.codenode.stopwatch.userInterface.StopWatchScreen
 import io.codenode.previewapi.PreviewRegistry

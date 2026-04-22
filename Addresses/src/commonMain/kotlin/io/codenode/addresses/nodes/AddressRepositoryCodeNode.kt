@@ -14,7 +14,7 @@ import io.codenode.fbpdsl.runtime.ProcessResult2
 import io.codenode.iptypes.Address
 import io.codenode.addresses.toEntity
 import io.codenode.persistence.address.AddressRepository
-import io.codenode.addresses.AddressesPersistence
+import io.codenode.addresses.persistence.AddressesPersistence
 
 /**
  * Processor node that performs CRUD operations on addresses.

@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import kotlin.math.roundToInt
 import io.codenode.fbpdsl.model.ExecutionState
-import io.codenode.weatherforecast.WeatherForecastViewModel
+import io.codenode.weatherforecast.viewmodel.WeatherForecastViewModel
 
 /**
  * Main composable for the WeatherForecast module.

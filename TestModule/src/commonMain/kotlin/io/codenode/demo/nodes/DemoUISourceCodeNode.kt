@@ -6,7 +6,7 @@
 
 package io.codenode.demo.nodes
 
-import io.codenode.demo.DemoUIState
+import io.codenode.demo.viewmodel.DemoUIState
 import io.codenode.fbpdsl.model.CodeNodeFactory
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.model.CodeNodeType

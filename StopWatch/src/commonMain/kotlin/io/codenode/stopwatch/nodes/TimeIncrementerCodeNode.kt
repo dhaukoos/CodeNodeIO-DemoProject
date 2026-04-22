@@ -11,7 +11,7 @@ import io.codenode.fbpdsl.model.CodeNodeType
 import io.codenode.fbpdsl.runtime.NodeRuntime
 import io.codenode.fbpdsl.runtime.PortSpec
 import io.codenode.fbpdsl.runtime.ProcessResult2
-import io.codenode.stopwatch.StopWatchState
+import io.codenode.stopwatch.viewmodel.StopWatchState
 
 /**
  * Processor node that increments seconds and rolls over to minutes at 60.
