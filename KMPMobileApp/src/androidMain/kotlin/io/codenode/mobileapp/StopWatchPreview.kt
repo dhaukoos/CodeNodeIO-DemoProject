@@ -4,17 +4,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.codenode.stopwatch.generated.StopWatchControllerAdapter
-import io.codenode.stopwatch.StopWatchViewModel
-import io.codenode.stopwatch.generated.StopWatchController
-import io.codenode.stopwatch.stopWatchFlowGraph
+import io.codenode.stopwatch.createStopWatchRuntime
+import io.codenode.stopwatch.flow.stopWatchFlowGraph
 import io.codenode.stopwatch.userInterface.StopWatchScreen
+import io.codenode.stopwatch.viewmodel.StopWatchViewModel
 
 @Preview
 @Composable
 private fun StopWatchPreview() {
-    val controller = remember { StopWatchController(stopWatchFlowGraph) }
-    val viewModel = remember { StopWatchViewModel(StopWatchControllerAdapter(controller)) }
+    val controller = remember { createStopWatchRuntime(stopWatchFlowGraph) }
+    val viewModel = remember { StopWatchViewModel(controller) }
     StopWatchScreen(
         viewModel = viewModel,
         minSize = 200.dp

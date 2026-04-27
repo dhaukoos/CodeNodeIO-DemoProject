@@ -7,7 +7,7 @@
 package io.codenode.mobileapp
 
 import io.codenode.fbpdsl.model.*
-import io.codenode.stopwatch.generated.StopWatchController
+import io.codenode.stopwatch.createStopWatchRuntime
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -120,7 +120,7 @@ class StopWatchIntegrationTest {
     fun t033_controller_start_transitions_executionState_to_RUNNING() {
         // Given: A StopWatchController in IDLE state
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // Verify initial state is IDLE
         assertEquals("Initial state should be IDLE",
@@ -138,7 +138,7 @@ class StopWatchIntegrationTest {
     fun t033_start_returns_updated_FlowGraph() {
         // Given: A StopWatchController
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // When: Calling start()
         val updatedGraph = controller.start()
@@ -152,7 +152,7 @@ class StopWatchIntegrationTest {
     fun t033_multiple_start_calls_maintain_RUNNING_state() {
         // Given: A StopWatchController
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // When: Calling start() multiple times
         controller.start()
@@ -169,7 +169,7 @@ class StopWatchIntegrationTest {
     fun t034_controller_stop_transitions_executionState_to_IDLE() {
         // Given: A StopWatchController in RUNNING state
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
         controller.start()
         assertEquals(ExecutionState.RUNNING, controller.executionState.value)
 
@@ -185,7 +185,7 @@ class StopWatchIntegrationTest {
     fun t034_stop_from_PAUSED_state_transitions_to_IDLE() {
         // Given: A StopWatchController in PAUSED state
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
         controller.start()
         controller.pause()
         assertEquals(ExecutionState.PAUSED, controller.executionState.value)
@@ -202,7 +202,7 @@ class StopWatchIntegrationTest {
     fun t034_stop_returns_updated_FlowGraph() {
         // Given: A StopWatchController in RUNNING state
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
         controller.start()
 
         // When: Calling stop()
@@ -218,7 +218,7 @@ class StopWatchIntegrationTest {
     fun t035_controller_reset_transitions_executionState_to_IDLE() {
         // Given: A StopWatchController in RUNNING state
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
         controller.start()
 
         // When: Calling reset()
@@ -233,7 +233,7 @@ class StopWatchIntegrationTest {
     fun t035_reset_resets_elapsedSeconds_to_0() {
         // Given: A StopWatchController
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // When: Calling reset()
         controller.reset()
@@ -247,7 +247,7 @@ class StopWatchIntegrationTest {
     fun t035_reset_resets_elapsedMinutes_to_0() {
         // Given: A StopWatchController
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // When: Calling reset()
         controller.reset()
@@ -261,7 +261,7 @@ class StopWatchIntegrationTest {
     fun t035_reset_from_PAUSED_state_clears_time_and_transitions_to_IDLE() {
         // Given: A StopWatchController in PAUSED state
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
         controller.start()
         controller.pause()
 
@@ -283,7 +283,7 @@ class StopWatchIntegrationTest {
     fun t036_isRunning_is_true_when_executionState_is_RUNNING() {
         // Given: A StopWatchController
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // When: Starting the controller
         controller.start()
@@ -297,7 +297,7 @@ class StopWatchIntegrationTest {
     fun t036_isRunning_is_false_when_executionState_is_IDLE() {
         // Given: A StopWatchController in IDLE state
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // Then: isRunning should be derived as false
         val isRunning = controller.executionState.value == ExecutionState.RUNNING
@@ -308,7 +308,7 @@ class StopWatchIntegrationTest {
     fun t036_isRunning_is_false_when_executionState_is_PAUSED() {
         // Given: A StopWatchController in PAUSED state
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
         controller.start()
         controller.pause()
 
@@ -321,7 +321,7 @@ class StopWatchIntegrationTest {
     fun t036_isRunning_transitions_correctly_through_state_changes() {
         // Given: A StopWatchController
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // Initially IDLE -> isRunning = false
         assertFalse("Initially isRunning should be false",
@@ -354,7 +354,7 @@ class StopWatchIntegrationTest {
     fun controller_pause_transitions_executionState_to_PAUSED() {
         // Given: A StopWatchController in RUNNING state
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
         controller.start()
 
         // When: Calling pause()
@@ -369,7 +369,7 @@ class StopWatchIntegrationTest {
     fun controller_getStatus_returns_FlowExecutionStatus() {
         // Given: A StopWatchController
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // When: Calling getStatus()
         val status = controller.getStatus()
@@ -382,7 +382,7 @@ class StopWatchIntegrationTest {
     fun controller_exposes_StateFlow_properties() {
         // Given: A StopWatchController
         val flowGraph = createStopWatchFlowGraph()
-        val controller = StopWatchController(flowGraph)
+        val controller = createStopWatchRuntime(flowGraph)
 
         // Then: All StateFlow properties should be accessible
         assertNotNull("elapsedSeconds StateFlow should be accessible", controller.seconds)

@@ -20,16 +20,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import io.codenode.stopwatch.generated.StopWatchControllerAdapter
-import io.codenode.stopwatch.StopWatchViewModel
-import io.codenode.stopwatch.generated.StopWatchController
-import io.codenode.stopwatch.stopWatchFlowGraph
+// Feature 085 (universal-runtime collapse): replaced per-module Controller/Adapter
+// with `create{Module}Runtime` factory functions. ViewModel + State + FlowGraph + UI
+// imports updated to canonical subpackage locations.
+import io.codenode.stopwatch.createStopWatchRuntime
+import io.codenode.stopwatch.flow.stopWatchFlowGraph
+import io.codenode.stopwatch.viewmodel.StopWatchViewModel
 import io.codenode.stopwatch.userInterface.StopWatchScreen
-import io.codenode.userprofiles.UserProfilesViewModel
-import io.codenode.userprofiles.generated.UserProfilesController
-import io.codenode.userprofiles.generated.UserProfilesControllerAdapter
-import io.codenode.userprofiles.userProfilesFlowGraph
-import io.codenode.userprofiles.UserProfilesPersistence
+import io.codenode.userprofiles.createUserProfilesRuntime
+import io.codenode.userprofiles.flow.userProfilesFlowGraph
+import io.codenode.userprofiles.persistence.UserProfilesPersistence
+import io.codenode.userprofiles.viewmodel.UserProfilesViewModel
 import io.codenode.userprofiles.userInterface.UserProfiles
 
 /**
@@ -53,22 +54,22 @@ fun App() {
  */
 @Composable
 fun MainContent() {
-    // StopWatch setup
+    // StopWatch setup — feature 085: universal-runtime path
     val stopWatchController = remember {
-        StopWatchController(stopWatchFlowGraph).also {
+        createStopWatchRuntime(stopWatchFlowGraph).also {
             it.setAttenuationDelay(1000)
         }
     }
-    val stopWatchViewModel = remember { StopWatchViewModel(StopWatchControllerAdapter(stopWatchController)) }
+    val stopWatchViewModel = remember { StopWatchViewModel(stopWatchController) }
 
-    // UserProfiles setup
+    // UserProfiles setup — feature 085: universal-runtime path
     val userProfilesController = remember {
-        UserProfilesController(userProfilesFlowGraph).also {
+        createUserProfilesRuntime(userProfilesFlowGraph).also {
             it.start()
         }
     }
     val userProfilesViewModel = remember {
-        UserProfilesViewModel(UserProfilesControllerAdapter(userProfilesController), UserProfilesPersistence.dao)
+        UserProfilesViewModel(userProfilesController, UserProfilesPersistence.dao)
     }
 
     var selectedTab by remember { mutableStateOf(0) }

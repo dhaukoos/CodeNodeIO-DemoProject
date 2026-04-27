@@ -9,7 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import io.codenode.persistence.DatabaseModule
 import io.codenode.persistence.initializeDatabaseContext
-import io.codenode.userprofiles.userProfilesModule
+import io.codenode.userprofiles.persistence.userProfilesModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
