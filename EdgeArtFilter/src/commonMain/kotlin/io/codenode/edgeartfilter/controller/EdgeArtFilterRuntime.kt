@@ -4,13 +4,13 @@
  * License: Apache 2.0
  */
 
-package io.codenode.edgeartfilter
+package io.codenode.edgeartfilter.controller
 
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
 import io.codenode.fbpdsl.runtime.ModuleController
-import io.codenode.edgeartfilter.controller.EdgeArtFilterControllerInterface
+import io.codenode.edgeartfilter.EdgeArtFilterState
 import io.codenode.edgeartfilter.nodes.ColorOverlayCodeNode
 import io.codenode.edgeartfilter.nodes.EdgeDetectorCodeNode
 import io.codenode.edgeartfilter.nodes.GrayscaleTransformerCodeNode

@@ -23,11 +23,11 @@ import androidx.compose.ui.Modifier
 // Feature 085 (universal-runtime collapse): replaced per-module Controller/Adapter
 // with `create{Module}Runtime` factory functions. ViewModel + State + FlowGraph + UI
 // imports updated to canonical subpackage locations.
-import io.codenode.stopwatch.createStopWatchRuntime
+import io.codenode.stopwatch.controller.createStopWatchRuntime
 import io.codenode.stopwatch.flow.stopWatchFlowGraph
 import io.codenode.stopwatch.viewmodel.StopWatchViewModel
 import io.codenode.stopwatch.userInterface.StopWatchScreen
-import io.codenode.userprofiles.createUserProfilesRuntime
+import io.codenode.userprofiles.controller.createUserProfilesRuntime
 import io.codenode.userprofiles.flow.userProfilesFlowGraph
 import io.codenode.userprofiles.persistence.UserProfilesPersistence
 import io.codenode.userprofiles.viewmodel.UserProfilesViewModel

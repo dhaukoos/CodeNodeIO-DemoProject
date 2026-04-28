@@ -4,13 +4,12 @@
  * License: Apache 2.0
  */
 
-package io.codenode.stopwatch
+package io.codenode.stopwatch.controller
 
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
 import io.codenode.fbpdsl.runtime.ModuleController
-import io.codenode.stopwatch.controller.StopWatchControllerInterface
 import io.codenode.stopwatch.viewmodel.StopWatchState
 import io.codenode.stopwatch.nodes.DisplayReceiverCodeNode
 import io.codenode.stopwatch.nodes.TimeIncrementerCodeNode

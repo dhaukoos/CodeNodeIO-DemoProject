@@ -4,13 +4,12 @@
  * License: Apache 2.0
  */
 
-package io.codenode.userprofiles
+package io.codenode.userprofiles.controller
 
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
 import io.codenode.fbpdsl.runtime.ModuleController
-import io.codenode.userprofiles.controller.UserProfilesControllerInterface
 import io.codenode.userprofiles.viewmodel.UserProfilesState
 import io.codenode.userprofiles.nodes.UserProfileCUDCodeNode
 import io.codenode.userprofiles.nodes.UserProfileRepositoryCodeNode

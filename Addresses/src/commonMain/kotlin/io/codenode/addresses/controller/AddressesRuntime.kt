@@ -4,13 +4,12 @@
  * License: Apache 2.0
  */
 
-package io.codenode.addresses
+package io.codenode.addresses.controller
 
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
 import io.codenode.fbpdsl.runtime.ModuleController
-import io.codenode.addresses.controller.AddressesControllerInterface
 import io.codenode.addresses.viewmodel.AddressesState
 import io.codenode.addresses.nodes.AddressCUDCodeNode
 import io.codenode.addresses.nodes.AddressRepositoryCodeNode

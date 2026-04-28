@@ -4,13 +4,13 @@
  * License: Apache 2.0
  */
 
-package io.codenode.weatherforecast
+package io.codenode.weatherforecast.controller
 
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
 import io.codenode.fbpdsl.runtime.ModuleController
-import io.codenode.weatherforecast.controller.WeatherForecastControllerInterface
+import io.codenode.weatherforecast.WeatherForecastState
 import io.codenode.weatherforecast.nodes.DataMapperCodeNode
 import io.codenode.weatherforecast.nodes.ForecastDisplayCodeNode
 import io.codenode.weatherforecast.nodes.HttpFetcherCodeNode
