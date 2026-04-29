@@ -17,7 +17,7 @@ object Calc2CodeNode : CodeNodeDefinition {
         val sum = input1 + input2
         val difference = input1 - input2
         val product = input1 * input2
-        val quotient = input1 * input2
+        val quotient = input1 / input2
         CalculationResults(sum, difference, product, quotient)
       }
 
