@@ -59,6 +59,11 @@ dependencies {
             attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
         }
     }
+    graphEditorRuntime(project(":TestModule")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
     graphEditorRuntime(project(":persistence")) {
         attributes {
             attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")

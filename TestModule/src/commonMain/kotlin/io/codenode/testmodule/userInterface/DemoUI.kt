@@ -3,7 +3,7 @@
  * License: Apache 2.0
  */
 
-package io.codenode.demo.userInterface
+package io.codenode.testmodule.userInterface
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -16,8 +16,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.codenode.demo.saved.DemoUIViewModel
-import io.codenode.demo.iptypes.CalculationResults
+import io.codenode.testmodule.viewmodel.DemoUIViewModel
+import io.codenode.testmodule.iptypes.CalculationResults
 
 @Composable
 fun DemoUI(
@@ -49,7 +49,7 @@ fun DemoUI(
                 errorA = a == null
                 errorB = b == null
                 if (a != null && b != null) {
-                   // viewModel.emit(a, b)
+                    viewModel.emit(a, b)
                 }
             }
         )

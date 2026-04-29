@@ -22,6 +22,11 @@ kotlin {
             }
         }
     }
+    // Quickstart VS-A1 migration: register the jvm target so jvmMain (and the
+    // PreviewProvider it hosts) has a backing target. Without this, UI-FBP code
+    // generation refuses (FR-009) and the GraphEditor's Runtime Preview can't
+    // load the module's classes.
+    jvm()
 
     sourceSets {
         commonMain.dependencies {
@@ -37,11 +42,14 @@ kotlin {
         androidMain.dependencies {
             implementation("org.jetbrains.compose.ui:ui-tooling-preview:${LocalVersions.compose}")
         }
+        jvmMain.dependencies {
+            implementation("io.codenode:preview-api")
+        }
     }
 }
 
 android {
-    namespace = "io.codenode.demo"
+    namespace = "io.codenode.testmodule"
     compileSdk = 34
 
     defaultConfig {

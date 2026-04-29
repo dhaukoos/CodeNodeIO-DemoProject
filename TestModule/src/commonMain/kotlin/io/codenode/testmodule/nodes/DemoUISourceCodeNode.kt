@@ -4,9 +4,9 @@
  * License: Apache 2.0
  */
 
-package io.codenode.demo.nodes
+package io.codenode.testmodule.nodes
 
-import io.codenode.demo.viewmodel.DemoUIState
+import io.codenode.testmodule.viewmodel.DemoUIState
 import io.codenode.fbpdsl.model.CodeNodeFactory
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.model.CodeNodeType

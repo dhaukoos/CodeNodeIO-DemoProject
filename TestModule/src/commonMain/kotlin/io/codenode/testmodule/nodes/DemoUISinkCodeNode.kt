@@ -4,15 +4,15 @@
  * License: Apache 2.0
  */
 
-package io.codenode.demo.nodes
+package io.codenode.testmodule.nodes
 
-import io.codenode.demo.viewmodel.DemoUIState
+import io.codenode.testmodule.viewmodel.DemoUIState
 import io.codenode.fbpdsl.model.CodeNodeFactory
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.model.CodeNodeType
 import io.codenode.fbpdsl.runtime.NodeRuntime
 import io.codenode.fbpdsl.runtime.PortSpec
-import io.codenode.demo.iptypes.CalculationResults
+import io.codenode.testmodule.iptypes.CalculationResults
 
 object DemoUISinkCodeNode : CodeNodeDefinition {
     override val name = "DemoUISink"

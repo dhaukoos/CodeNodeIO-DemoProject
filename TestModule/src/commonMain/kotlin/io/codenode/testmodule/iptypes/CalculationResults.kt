@@ -7,7 +7,7 @@
  * License: Apache 2.0
  */
 
-package io.codenode.demo.iptypes
+package io.codenode.testmodule.iptypes
 
 data class CalculationResults(
     val sum: Double,
