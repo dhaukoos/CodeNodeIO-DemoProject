@@ -19,12 +19,16 @@ object DemoUIState {
     internal val _b = MutableStateFlow<Double>(0.0)
     val bFlow: StateFlow<Double> = _b.asStateFlow()
 
+    internal val _c = MutableStateFlow<Double>(0.0)
+    val cFlow: StateFlow<Double> = _c.asStateFlow()
+
     internal val _results = MutableStateFlow<CalculationResults?>(null)
     val resultsFlow: StateFlow<CalculationResults?> = _results.asStateFlow()
 
     fun reset() {
         _a.value = 0.0
         _b.value = 0.0
+        _c.value = 0.0
         _results.value = null
     }
 }

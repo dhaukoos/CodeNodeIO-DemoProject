@@ -12,7 +12,7 @@ import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.model.CodeNodeType
 import io.codenode.fbpdsl.runtime.NodeRuntime
 import io.codenode.fbpdsl.runtime.PortSpec
-import io.codenode.fbpdsl.runtime.ProcessResult2
+import io.codenode.fbpdsl.runtime.ProcessResult3
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.combine
 
@@ -23,20 +23,22 @@ object DemoUISourceCodeNode : CodeNodeDefinition {
     override val inputPorts = emptyList<PortSpec>()
     override val outputPorts = listOf(
         PortSpec("a", Double::class),
-        PortSpec("b", Double::class)
+        PortSpec("b", Double::class),
+        PortSpec("c", Double::class)
     )
 
     override fun createRuntime(name: String): NodeRuntime {
-        return CodeNodeFactory.createSourceOut2<Double, Double>(
+        return CodeNodeFactory.createSourceOut3<Double, Double, Double>(
             name = name,
             generate = { emit ->
                 combine(
                 DemoUIState._a,
-                DemoUIState._b
+                DemoUIState._b,
+                DemoUIState._c
                 ) { values -> values }
                     .drop(1)
                     .collect {
-                        emit(ProcessResult2(DemoUIState._a.value, DemoUIState._b.value))
+                        emit(ProcessResult3(DemoUIState._a.value, DemoUIState._b.value, DemoUIState._c.value))
                     }
             }
         )

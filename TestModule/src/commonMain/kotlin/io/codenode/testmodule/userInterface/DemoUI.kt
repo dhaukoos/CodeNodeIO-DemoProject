@@ -26,8 +26,10 @@ fun DemoUI(
 ) {
     var textA by remember { mutableStateOf("") }
     var textB by remember { mutableStateOf("") }
+    var textC by remember { mutableStateOf("") }
     var errorA by remember { mutableStateOf(false) }
     var errorB by remember { mutableStateOf(false) }
+    var errorC by remember { mutableStateOf(false) }
     val results by viewModel.results.collectAsState()
 
     Column(
@@ -39,17 +41,22 @@ fun DemoUI(
         InputSection(
             textA = textA,
             textB = textB,
+            textC = textC,
             errorA = errorA,
             errorB = errorB,
+            errorC = errorC,
             onTextAChanged = { textA = it; errorA = false },
             onTextBChanged = { textB = it; errorB = false },
+            onTextCChanged = { textC = it; errorC = false },
             onEmit = {
                 val a = textA.toDoubleOrNull()
                 val b = textB.toDoubleOrNull()
+                val c = textC.toDoubleOrNull()
                 errorA = a == null
                 errorB = b == null
-                if (a != null && b != null) {
-                    viewModel.emit(a, b)
+                errorC = c== null
+                if (a != null && b != null && c != null) {
+                    viewModel.emit(a, b, c)
                 }
             }
         )
@@ -64,10 +71,13 @@ fun DemoUI(
 private fun InputSection(
     textA: String,
     textB: String,
+    textC: String,
     errorA: Boolean,
     errorB: Boolean,
+    errorC: Boolean,
     onTextAChanged: (String) -> Unit,
     onTextBChanged: (String) -> Unit,
+    onTextCChanged: (String) -> Unit,
     onEmit: () -> Unit
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -75,6 +85,7 @@ private fun InputSection(
 
         NumberField(label = "A", value = textA, isError = errorA, onValueChange = onTextAChanged)
         NumberField(label = "B", value = textB, isError = errorB, onValueChange = onTextBChanged)
+        NumberField(label = "C", value = textC, isError = errorC, onValueChange = onTextCChanged)
 
         Button(
             onClick = onEmit,

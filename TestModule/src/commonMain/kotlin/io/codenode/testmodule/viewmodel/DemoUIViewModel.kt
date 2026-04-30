@@ -20,9 +20,10 @@ class DemoUIViewModel(
     val results: StateFlow<CalculationResults?> = DemoUIState.resultsFlow
     val executionState: StateFlow<ExecutionState> = controller.executionState
 
-    fun emit(a: Double, b: Double) {
+    fun emit(a: Double, b: Double, c: Double) {
         DemoUIState._a.value = a
         DemoUIState._b.value = b
+        DemoUIState._c.value = c
     }
 
     fun start(): FlowGraph = controller.start()
