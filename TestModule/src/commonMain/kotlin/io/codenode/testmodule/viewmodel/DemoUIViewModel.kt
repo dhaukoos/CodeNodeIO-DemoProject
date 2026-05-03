@@ -6,6 +6,9 @@
 
 package io.codenode.testmodule.viewmodel
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import io.codenode.fbpdsl.model.ExecutionState
 import io.codenode.fbpdsl.model.FlowGraph
@@ -20,6 +23,20 @@ class DemoUIViewModel(
     val results: StateFlow<CalculationResults?> = DemoUIState.resultsFlow
     val executionState: StateFlow<ExecutionState> = controller.executionState
 
+    var state by mutableStateOf(DemoUIStateMVI())
+        private set
+
+    fun onAction(action: DemoUIAction) {
+        when(action) {
+            DemoUIAction.Emit -> emitMVI(state.A, state.B)
+
+        }
+    }
+
+    fun emitMVI(a: Double, b: Double) {
+        state.A = a
+        DemoUIState._b.value = b
+    }
     fun emit(a: Double, b: Double, c: Double) {
         DemoUIState._a.value = a
         DemoUIState._b.value = b
