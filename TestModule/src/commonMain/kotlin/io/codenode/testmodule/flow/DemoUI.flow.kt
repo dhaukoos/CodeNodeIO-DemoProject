@@ -9,7 +9,6 @@ val demoUIFlowGraph = flowGraph("DemoUI", version = "1.0.0") {
         position(685.75, 276.0)
         input("results", CalculationResults::class)
         config("_codeNodeClass", "io.codenode.testmodule.nodes.DemoUISinkCodeNode")
-
         config("_codeNodeDefinition", "true")
     }
 

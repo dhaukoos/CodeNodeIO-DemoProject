@@ -16,12 +16,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import io.codenode.testmodule.viewmodel.DemoUIViewModel
 import io.codenode.testmodule.iptypes.CalculationResults
+import io.codenode.testmodule.viewmodel.DemoUIEvent
+import io.codenode.testmodule.viewmodel.DemoUIState
 
+/**
+ * MVI Screen: pure two-parameter Composable with no ViewModel dependency.
+ * Per feature 087 / FR-004, host apps wire `viewModel.state` + `viewModel::onEvent`
+ * to this signature in their own root/navigation layer.
+ */
 @Composable
 fun DemoUI(
-    viewModel: DemoUIViewModel,
+    state: DemoUIState,
+    onEvent: (DemoUIEvent) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var textA by remember { mutableStateOf("") }
@@ -30,7 +37,6 @@ fun DemoUI(
     var errorA by remember { mutableStateOf(false) }
     var errorB by remember { mutableStateOf(false) }
     var errorC by remember { mutableStateOf(false) }
-    val results by viewModel.results.collectAsState()
 
     Column(
         modifier = modifier
@@ -54,16 +60,18 @@ fun DemoUI(
                 val c = textC.toDoubleOrNull()
                 errorA = a == null
                 errorB = b == null
-                errorC = c== null
+                errorC = c == null
                 if (a != null && b != null && c != null) {
-                    viewModel.emit(a, b, c)
+                    onEvent(DemoUIEvent.UpdateA(a))
+                    onEvent(DemoUIEvent.UpdateB(b))
+                    onEvent(DemoUIEvent.UpdateC(c))
                 }
             }
         )
 
         Divider()
 
-        ResultsSection(results = results)
+        ResultsSection(results = state.results)
     }
 }
 

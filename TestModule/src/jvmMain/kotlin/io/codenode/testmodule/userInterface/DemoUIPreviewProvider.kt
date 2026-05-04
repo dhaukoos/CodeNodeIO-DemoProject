@@ -6,12 +6,18 @@
 
 package io.codenode.testmodule.userInterface
 
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import io.codenode.testmodule.viewmodel.DemoUIViewModel
 import io.codenode.previewapi.PreviewRegistry
 
 /**
  * Provides preview composables that render DemoUI components,
  * driven by the RuntimeSession's ViewModel state.
+ *
+ * Per feature 087 / Design B, the registered lambda is the host-app
+ * "ScreenRoot" seam: it collects `viewModel.state` as Compose state and
+ * passes `viewModel::onEvent` to the pure two-parameter DemoUI Screen.
  */
 object DemoUIPreviewProvider {
 
@@ -21,7 +27,8 @@ object DemoUIPreviewProvider {
     fun register() {
         PreviewRegistry.register("DemoUI") { viewModel, modifier ->
             val vm = viewModel as DemoUIViewModel
-            DemoUI(viewModel = vm, modifier = modifier)
+            val state by vm.state.collectAsState()
+            DemoUI(state = state, onEvent = vm::onEvent, modifier = modifier)
         }
     }
 }
