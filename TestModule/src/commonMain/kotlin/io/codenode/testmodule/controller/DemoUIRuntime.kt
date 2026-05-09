@@ -23,8 +23,17 @@ import io.codenode.testmodule.iptypes.CalculationResults
  * Constructs a DemoUIControllerInterface backed by [DynamicPipelineController].
  * Per-flow-graph state lives in this function's closure — multiple
  * concurrent calls produce fully isolated controllers.
+ *
+ * @param fallbackLookup Resolves CodeNodeDefinitions for nodes other than
+ *        the generated DemoUISourceCodeNode / DemoUISinkCodeNode wrappers (e.g., transformers,
+ *        intermediate processors). The Runtime Preview path passes the
+ *        NodeDefinitionRegistry-backed lookup here so any CodeNode added
+ *        to the canvas resolves. Defaults to no-fallback for direct callers.
  */
-fun createDemoUIRuntime(flowGraph: FlowGraph): DemoUIControllerInterface {
+fun createDemoUIRuntime(
+    flowGraph: FlowGraph,
+    fallbackLookup: (String) -> CodeNodeDefinition? = { null }
+): DemoUIControllerInterface {
     val _results = MutableStateFlow<CalculationResults?>(null)
     val _a = MutableSharedFlow<Double>(replay = 1, extraBufferCapacity = 64)
     val _b = MutableSharedFlow<Double>(replay = 1, extraBufferCapacity = 64)
@@ -40,7 +49,7 @@ fun createDemoUIRuntime(flowGraph: FlowGraph): DemoUIControllerInterface {
         lookup = { nodeName -> when (nodeName) {
             "DemoUISource" -> sourceWrapper
             "DemoUISink" -> sinkWrapper
-            else -> null
+            else -> fallbackLookup(nodeName)
         } },
         onReset = {
             _results.value = null
