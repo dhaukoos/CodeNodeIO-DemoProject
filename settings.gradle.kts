@@ -57,7 +57,13 @@ if (codeNodeToolRepo.isDirectory) {
             substitute(module("io.codenode:fbpDsl")).using(project(":fbpDsl"))
             substitute(module("io.codenode:preview-api")).using(project(":preview-api"))
             substitute(module("io.codenode:graphEditor")).using(project(":graphEditor"))
-            substitute(module("io.codenode:circuitSimulator")).using(project(":circuitSimulator"))
+            // NOTE: `io.codenode:circuitSimulator` substitution removed — the
+            // `:circuitSimulator` project doesn't exist in the CodeNodeIO tool repo
+            // (was never created; substitution was historical aspirational). Gradle
+            // now validates substitution targets at settings-evaluation time and
+            // errors out on orphan substitutions even when no consumer references
+            // the module. Re-add when/if a `:circuitSimulator` module is actually
+            // introduced upstream.
             substitute(module("io.codenode:flowGraph-types")).using(project(":flowGraph-types"))
             substitute(module("io.codenode:flowGraph-persist")).using(project(":flowGraph-persist"))
             substitute(module("io.codenode:flowGraph-inspect")).using(project(":flowGraph-inspect"))
