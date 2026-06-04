@@ -3,13 +3,12 @@
  * License: Apache 2.0
  */
 
-package io.codenode.expenseapproval
+package io.codenode.expenseapproval.userInterface
 
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import io.codenode.expenseapproval.userInterface.ExpenseApprovalScreen
 import io.codenode.expenseapproval.viewmodel.Approver
 import io.codenode.expenseapproval.viewmodel.ExpenseApprovalState
 import io.codenode.expenseapproval.viewmodel.ExpenseApprovalStatus
