@@ -87,6 +87,7 @@ include(":KMPMobileApp")
 
 // Test/sandbox module
 include(":TestModule")
+include(":ExpenseApproval")
 
 // Generated modules (from FlowGraph compilation)
 include(":StopWatch")
