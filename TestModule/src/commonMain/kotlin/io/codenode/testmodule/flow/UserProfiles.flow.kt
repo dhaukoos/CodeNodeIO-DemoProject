@@ -1,4 +1,4 @@
-package io.codenode.userprofiles.flow
+package io.codenode.testmodule.flow
 
 import io.codenode.fbpdsl.dsl.*
 import io.codenode.fbpdsl.model.*
