@@ -30,6 +30,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // Required to resolve com.github.Dansoftowner:jSystemThemeDetector
+        // (graphEditor transitive dep, feature 094 — JitPack-only)
+        maven {
+            url = uri("https://jitpack.io")
+        }
     }
 }
 
