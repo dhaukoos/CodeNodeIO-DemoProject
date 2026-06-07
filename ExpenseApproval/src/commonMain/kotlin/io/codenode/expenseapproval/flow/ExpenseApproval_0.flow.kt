@@ -61,6 +61,7 @@ val expenseApprovalFlowGraph = flowGraph("ExpenseApproval", version = "1.0.0") {
     }
 
     val expenseApprovalSink = codeNode("ExpenseApprovalSink", nodeType = "SINK") {
+
         position(840.0, 300.0)
         input("decision", ApprovalDecision::class)
         config("_codeNodeClass", "io.codenode.expenseapproval.nodes.ExpenseApprovalSinkCodeNode")
