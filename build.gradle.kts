@@ -89,6 +89,11 @@ dependencies {
             attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
         }
     }
+    graphEditorRuntime(project(":XYCoordRepo")) {
+        attributes {
+            attribute(Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java), "jvm")
+        }
+    }
 }
 
 /**

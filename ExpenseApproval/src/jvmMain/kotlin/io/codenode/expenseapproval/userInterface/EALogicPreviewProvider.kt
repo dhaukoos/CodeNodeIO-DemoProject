@@ -17,7 +17,7 @@ import io.codenode.previewapi.PreviewRegistry
  *
  * Per feature 087 / Design B, the registered lambda is the host-app
  * "ScreenRoot" seam: it collects `viewModel.state` as Compose state and
- * passes `viewModel::onEvent` to the pure two-parameter ExpenseApprovalScreen Screen.
+ * passes `viewModel::onEvent` to the pure two-parameter EALogicUserInterface Screen.
  */
 object EALogicPreviewProvider {
 
@@ -28,7 +28,7 @@ object EALogicPreviewProvider {
         PreviewRegistry.register("EALogic") { viewModel, modifier ->
             val vm = viewModel as EALogicViewModel
             val state by vm.state.collectAsState()
-            ExpenseApprovalScreen(state = state, onEvent = vm::onEvent, modifier = modifier)
+            EALogicUserInterface(state = state, onEvent = vm::onEvent, modifier = modifier)
         }
     }
 }

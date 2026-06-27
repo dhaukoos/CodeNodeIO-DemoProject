@@ -7,6 +7,7 @@ package io.codenode.persistence
 
 import io.codenode.persistence.userprofile.UserProfileDao
 import io.codenode.persistence.address.AddressDao
+import io.codenode.persistence.xycoord.XYCoordDao
 import org.koin.core.context.GlobalContext
 import org.koin.dsl.module
 
@@ -27,6 +28,7 @@ object PersistenceBootstrap {
             koin.loadModules(listOf(module {
                 single<UserProfileDao> { db.userProfileDao() }
                 single<AddressDao> { db.addressDao() }
+                single<XYCoordDao> { db.xYCoordDao() }
             }))
         } catch (e: Exception) {
             println("Warning: PersistenceBootstrap.registerDaos() failed: ${e.message}")
