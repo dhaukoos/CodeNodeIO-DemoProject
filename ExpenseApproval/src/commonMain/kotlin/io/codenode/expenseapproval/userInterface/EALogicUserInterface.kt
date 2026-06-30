@@ -21,15 +21,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import io.codenode.expenseapproval.viewmodel.UIDraftEvent
-import io.codenode.expenseapproval.viewmodel.UIDraftState
+import io.codenode.expenseapproval.viewmodel.EALogicEvent
+import io.codenode.expenseapproval.viewmodel.EALogicState
 import io.codenode.expenseapproval.viewmodel.RuntimeStatus
 import io.codenode.expenseapproval.iptypes.ApprovalDecision
 
 @Composable
 internal fun EALogicUserInterface(
-    state: UIDraftState,
-    onEvent: (UIDraftEvent) -> Unit,
+    state: EALogicState,
+    onEvent: (EALogicEvent) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
@@ -39,7 +39,7 @@ internal fun EALogicUserInterface(
                 Text("amount: Double", style = MaterialTheme.typography.subtitle1)
                 OutlinedTextField(
                     value = state.formFields["ealogic_in_conditionbranch_amount"]?.values?.get("amount").orEmpty(),
-                    onValueChange = { onEvent(UIDraftEvent.OnFieldEdit("ealogic_in_conditionbranch_amount", "amount", it)) },
+                    onValueChange = { onEvent(EALogicEvent.OnFieldEdit("ealogic_in_conditionbranch_amount", "amount", it)) },
                     label = { Text("amount") },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     isError = run {
@@ -48,7 +48,7 @@ internal fun EALogicUserInterface(
                     },
                     modifier = Modifier.fillMaxWidth(),
                 )
-                Button(onClick = { onEvent(UIDraftEvent.OnEmit("ealogic_in_conditionbranch_amount")) }) { Text("Emit") }
+                Button(onClick = { onEvent(EALogicEvent.OnEmit("ealogic_in_conditionbranch_amount")) }) { Text("Emit") }
                 when (val status = state.runtimeStatus["ealogic_in_conditionbranch_amount"]) {
                     RuntimeStatus.RuntimeNotActive -> Text("runtime not active", color = MaterialTheme.colors.error)
                     is RuntimeStatus.EmitError -> Text(status.message, color = MaterialTheme.colors.error)

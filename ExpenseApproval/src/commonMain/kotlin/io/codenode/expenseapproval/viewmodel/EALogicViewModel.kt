@@ -18,7 +18,7 @@ import io.codenode.expenseapproval.iptypes.ExpenseAmount
 import io.codenode.expenseapproval.iptypes.ApprovalDecision
 
 /**
- * Owns the live [UIDraftState] for EALogic UI Draft and serializes
+ * Owns the live [EALogicState] for EALogic UI Draft and serializes
  * event dispatch through [onEvent]. Per-input-port emit channels live on the imported
  * `<port>SourceCodeNode` singletons (FR-029 / C-GO9); per-output-port `latestIp` StateFlows
  * live on the imported `<port>SinkCodeNode` singletons (FR-030 / C-GO9). The ViewModel
@@ -27,29 +27,29 @@ import io.codenode.expenseapproval.iptypes.ApprovalDecision
  */
 internal open class EALogicViewModel : ViewModel() {
 
-    private val _state: MutableStateFlow<UIDraftState> = MutableStateFlow(UIDraftState.initial())
-    val state: StateFlow<UIDraftState> = _state.asStateFlow()
+    private val _state: MutableStateFlow<EALogicState> = MutableStateFlow(EALogicState.initial())
+    val state: StateFlow<EALogicState> = _state.asStateFlow()
 
     init {
         viewModelScope.launch {
             EALogicSinkCodeNode.latestIps.getValue("out_mergedecision_output1").collect { newIp ->
-                _state.value = reduceUIDraft(_state.value, ReducerEvent.SinkArrival("ealogic_out_mergedecision_output1", newIp))
+                _state.value = reduceEALogic(_state.value, ReducerEvent.SinkArrival("ealogic_out_mergedecision_output1", newIp))
             }
         }
     }
 
     /** Dispatch entry — every user action routes through here. */
-    fun onEvent(event: UIDraftEvent) {
+    fun onEvent(event: EALogicEvent) {
         when (event) {
-            is UIDraftEvent.OnFieldEdit -> {
-                _state.value = reduceUIDraft(_state.value, ReducerEvent.Public(event))
+            is EALogicEvent.OnFieldEdit -> {
+                _state.value = reduceEALogic(_state.value, ReducerEvent.Public(event))
             }
-            is UIDraftEvent.OnEmit -> handleEmit(event)
+            is EALogicEvent.OnEmit -> handleEmit(event)
         }
     }
 
     /** Handle OnEmit: gate on runtime state, parse + assemble, push into the Source singleton's emitChannel. */
-    private fun handleEmit(event: UIDraftEvent.OnEmit) {
+    private fun handleEmit(event: EALogicEvent.OnEmit) {
         val current = _state.value
         if (!isRuntimeRunning()) {
             // FR-028 — reject Emit when runtime is stopped or recompiling.
@@ -96,14 +96,14 @@ internal open class EALogicViewModel : ViewModel() {
 }
 
 /**
- * Pure Reducer: `(UIDraftState, ReducerEvent) → UIDraftState`. All I/O lives in the
+ * Pure Reducer: `(EALogicState, ReducerEvent) → EALogicState`. All I/O lives in the
  * ViewModel's `onEvent` / `handleEmit`; this function never touches a channel, a Sink,
  * or runtime-state. Same input → same output, always.
  */
-internal fun reduceUIDraft(state: UIDraftState, event: ReducerEvent): UIDraftState =
+internal fun reduceEALogic(state: EALogicState, event: ReducerEvent): EALogicState =
     when (event) {
         is ReducerEvent.Public -> when (val e = event.event) {
-            is UIDraftEvent.OnFieldEdit -> {
+            is EALogicEvent.OnFieldEdit -> {
                 val slot = state.formFields[e.portId]
                     ?: FormFieldsSlot(values = emptyMap())
                 val newSlot = slot.copy(values = slot.values + (e.propertyName to e.rawValue))
@@ -113,7 +113,7 @@ internal fun reduceUIDraft(state: UIDraftState, event: ReducerEvent): UIDraftSta
                     runtimeStatus = state.runtimeStatus + (e.portId to RuntimeStatus.Idle),
                 )
             }
-            is UIDraftEvent.OnEmit -> state // side-effecting; handled in ViewModel.handleEmit
+            is EALogicEvent.OnEmit -> state // side-effecting; handled in ViewModel.handleEmit
         }
         is ReducerEvent.SinkArrival -> {
             state.copy(
@@ -123,11 +123,11 @@ internal fun reduceUIDraft(state: UIDraftState, event: ReducerEvent): UIDraftSta
     }
 
 /**
- * Internal union of the public [UIDraftEvent] surface plus generator-internal
+ * Internal union of the public [EALogicEvent] surface plus generator-internal
  * [SinkArrival] dispatches. Kept private to this file so the public Event sealed
  * interface stays minimal per FR-023.
  */
 internal sealed interface ReducerEvent {
-    data class Public(val event: UIDraftEvent) : ReducerEvent
+    data class Public(val event: EALogicEvent) : ReducerEvent
     data class SinkArrival(val portId: String, val ip: Any?) : ReducerEvent
 }
