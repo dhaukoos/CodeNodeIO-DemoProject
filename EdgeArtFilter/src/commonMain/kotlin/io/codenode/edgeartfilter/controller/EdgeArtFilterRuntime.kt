@@ -9,7 +9,7 @@ package io.codenode.edgeartfilter.controller
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import io.codenode.edgeartfilter.EdgeArtFilterState
 import io.codenode.edgeartfilter.nodes.ColorOverlayCodeNode
 import io.codenode.edgeartfilter.nodes.EdgeDetectorCodeNode
@@ -43,5 +43,5 @@ fun createEdgeArtFilterRuntime(flowGraph: FlowGraph): EdgeArtFilterControllerInt
         lookup = EdgeArtFilterNodeRegistry::lookup,
         onReset = EdgeArtFilterState::reset
     )
-    return object : EdgeArtFilterControllerInterface, ModuleController by controller {}
+    return object : EdgeArtFilterControllerInterface, FlowGraphController by controller {}
 }

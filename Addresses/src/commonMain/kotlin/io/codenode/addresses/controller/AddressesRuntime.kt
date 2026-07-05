@@ -9,7 +9,7 @@ package io.codenode.addresses.controller
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import io.codenode.addresses.viewmodel.AddressesState
 import io.codenode.addresses.nodes.AddressCUDCodeNode
 import io.codenode.addresses.nodes.AddressRepositoryCodeNode
@@ -41,7 +41,7 @@ fun createAddressesRuntime(flowGraph: FlowGraph): AddressesControllerInterface {
         lookup = AddressesNodeRegistry::lookup,
         onReset = AddressesState::reset
     )
-    return object : AddressesControllerInterface, ModuleController by controller {
+    return object : AddressesControllerInterface, FlowGraphController by controller {
         override val save = AddressesState.saveFlow
         override val update = AddressesState.updateFlow
         override val remove = AddressesState.removeFlow

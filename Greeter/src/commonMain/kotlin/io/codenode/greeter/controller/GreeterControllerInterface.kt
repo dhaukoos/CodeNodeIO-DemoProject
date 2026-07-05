@@ -6,19 +6,19 @@
 
 package io.codenode.greeter.controller
 
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Typed control surface for Greeter.
  *
  * Inherits start/stop/pause/resume/reset/getStatus/setAttenuationDelay/
- * setEmissionObserver/setValueObserver and executionState from [ModuleController].
+ * setEmissionObserver/setValueObserver and executionState from [FlowGraphController].
  * Adds typed StateFlow members for each sink-input port the UI observes
  * AND additive emit<Port>(value) methods for each source-output port the UI raises
  * (Design B / FR-007 additive).
  */
-interface GreeterControllerInterface : ModuleController {
+interface GreeterControllerInterface : FlowGraphController {
     val greeting: StateFlow<String>
     val nameLength: StateFlow<Int>
     fun emitName(value: String)

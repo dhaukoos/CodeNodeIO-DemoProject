@@ -9,7 +9,7 @@ package io.codenode.userprofiles.controller
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import io.codenode.userprofiles.viewmodel.UserProfilesState
 import io.codenode.userprofiles.nodes.UserProfileCUDCodeNode
 import io.codenode.userprofiles.nodes.UserProfileRepositoryCodeNode
@@ -41,7 +41,7 @@ fun createUserProfilesRuntime(flowGraph: FlowGraph): UserProfilesControllerInter
         lookup = UserProfilesNodeRegistry::lookup,
         onReset = UserProfilesState::reset
     )
-    return object : UserProfilesControllerInterface, ModuleController by controller {
+    return object : UserProfilesControllerInterface, FlowGraphController by controller {
         override val save = UserProfilesState.saveFlow
         override val update = UserProfilesState.updateFlow
         override val remove = UserProfilesState.removeFlow

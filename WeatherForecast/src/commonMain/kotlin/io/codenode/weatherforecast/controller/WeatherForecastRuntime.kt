@@ -9,7 +9,7 @@ package io.codenode.weatherforecast.controller
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import io.codenode.weatherforecast.WeatherForecastState
 import io.codenode.weatherforecast.nodes.DataMapperCodeNode
 import io.codenode.weatherforecast.nodes.ForecastDisplayCodeNode
@@ -43,5 +43,5 @@ fun createWeatherForecastRuntime(flowGraph: FlowGraph): WeatherForecastControlle
         lookup = WeatherForecastNodeRegistry::lookup,
         onReset = WeatherForecastState::reset
     )
-    return object : WeatherForecastControllerInterface, ModuleController by controller {}
+    return object : WeatherForecastControllerInterface, FlowGraphController by controller {}
 }

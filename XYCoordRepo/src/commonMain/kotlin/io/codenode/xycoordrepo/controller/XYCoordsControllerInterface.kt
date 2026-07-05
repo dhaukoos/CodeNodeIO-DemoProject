@@ -6,19 +6,19 @@
 
 package io.codenode.xycoordrepo.controller
 
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Typed control surface for XYCoords.
  *
  * Inherits start/stop/pause/resume/reset/getStatus/setAttenuationDelay/
- * setEmissionObserver/setValueObserver and executionState from [ModuleController].
+ * setEmissionObserver/setValueObserver and executionState from [FlowGraphController].
  * Adds typed StateFlow members for each sink-input port the UI observes
  * AND additive emit<Port>(value) methods for each source-output port the UI raises
  * (Design B / FR-007 additive).
  */
-interface XYCoordsControllerInterface : ModuleController {
+interface XYCoordsControllerInterface : FlowGraphController {
     val result: StateFlow<Any?>
     val error: StateFlow<Any?>
     fun emitSave(value: Any)

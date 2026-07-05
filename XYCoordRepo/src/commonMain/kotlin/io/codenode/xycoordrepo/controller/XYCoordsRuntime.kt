@@ -9,7 +9,7 @@ package io.codenode.xycoordrepo.controller
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -58,7 +58,7 @@ fun createXYCoordsRuntime(
         }
     )
 
-    return object : XYCoordsControllerInterface, ModuleController by controller {
+    return object : XYCoordsControllerInterface, FlowGraphController by controller {
         override val result: StateFlow<Any?> = _result.asStateFlow()
         override val error: StateFlow<Any?> = _error.asStateFlow()
         override fun emitSave(value: Any) {

@@ -9,7 +9,7 @@ package io.codenode.greeter.controller
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -56,7 +56,7 @@ fun createGreeterRuntime(
         }
     )
 
-    return object : GreeterControllerInterface, ModuleController by controller {
+    return object : GreeterControllerInterface, FlowGraphController by controller {
         override val greeting: StateFlow<String> = _greeting.asStateFlow()
         override val nameLength: StateFlow<Int> = _nameLength.asStateFlow()
         override fun emitName(value: String) {

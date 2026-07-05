@@ -9,7 +9,7 @@ package io.codenode.testmodule.controller
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -56,7 +56,7 @@ fun createDemoUIRuntime(
         }
     )
 
-    return object : DemoUIControllerInterface, ModuleController by controller {
+    return object : DemoUIControllerInterface, FlowGraphController by controller {
         override val results: StateFlow<CalculationResults?> = _results.asStateFlow()
         override fun emitA(value: Double) {
             controller.coroutineScope?.launch { _a.emit(value) }

@@ -9,7 +9,7 @@ package io.codenode.stopwatch.controller
 import io.codenode.fbpdsl.model.FlowGraph
 import io.codenode.fbpdsl.runtime.CodeNodeDefinition
 import io.codenode.fbpdsl.runtime.DynamicPipelineController
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import io.codenode.stopwatch.viewmodel.StopWatchState
 import io.codenode.stopwatch.nodes.DisplayReceiverCodeNode
 import io.codenode.stopwatch.nodes.TimeIncrementerCodeNode
@@ -32,7 +32,7 @@ object StopWatchNodeRegistry {
  * Constructs a StopWatchControllerInterface backed by [DynamicPipelineController].
  *
  * Production-app consumers call this directly. The returned object delegates
- * every [ModuleController] member to the underlying controller and reads typed
+ * every [FlowGraphController] member to the underlying controller and reads typed
  * state flows directly from StopWatchState.
  */
 fun createStopWatchRuntime(flowGraph: FlowGraph): StopWatchControllerInterface {
@@ -41,7 +41,7 @@ fun createStopWatchRuntime(flowGraph: FlowGraph): StopWatchControllerInterface {
         lookup = StopWatchNodeRegistry::lookup,
         onReset = StopWatchState::reset
     )
-    return object : StopWatchControllerInterface, ModuleController by controller {
+    return object : StopWatchControllerInterface, FlowGraphController by controller {
         override val elapsedSeconds = StopWatchState.elapsedSecondsFlow
         override val elapsedMinutes = StopWatchState.elapsedMinutesFlow
         override val seconds = StopWatchState.secondsFlow

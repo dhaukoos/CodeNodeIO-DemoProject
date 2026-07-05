@@ -6,7 +6,7 @@
 
 package io.codenode.testmodule.controller
 
-import io.codenode.fbpdsl.runtime.ModuleController
+import io.codenode.fbpdsl.runtime.FlowGraphController
 import kotlinx.coroutines.flow.StateFlow
 import io.codenode.testmodule.iptypes.CalculationResults
 
@@ -14,12 +14,12 @@ import io.codenode.testmodule.iptypes.CalculationResults
  * Typed control surface for DemoUI.
  *
  * Inherits start/stop/pause/resume/reset/getStatus/setAttenuationDelay/
- * setEmissionObserver/setValueObserver and executionState from [ModuleController].
+ * setEmissionObserver/setValueObserver and executionState from [FlowGraphController].
  * Adds typed StateFlow members for each sink-input port the UI observes
  * AND additive emit<Port>(value) methods for each source-output port the UI raises
  * (Design B / FR-007 additive).
  */
-interface DemoUIControllerInterface : ModuleController {
+interface DemoUIControllerInterface : FlowGraphController {
     val results: StateFlow<CalculationResults?>
     fun emitA(value: Double)
     fun emitB(value: Double)
