@@ -5,4 +5,6 @@ io.codenode.expenseapproval.nodes.DecisionSinkCodeNode
 io.codenode.expenseapproval.nodes.EALogicSinkCodeNode
 io.codenode.expenseapproval.nodes.EALogicSourceCodeNode
 io.codenode.expenseapproval.nodes.EscalateCodeNode
+io.codenode.expenseapproval.nodes.ExpenseApprovalLogicSinkCodeNode
+io.codenode.expenseapproval.nodes.ExpenseApprovalLogicSourceCodeNode
 io.codenode.expenseapproval.nodes.MergeDecisionCodeNode
