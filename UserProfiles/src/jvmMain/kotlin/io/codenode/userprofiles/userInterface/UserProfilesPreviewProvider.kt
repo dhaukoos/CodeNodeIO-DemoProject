@@ -7,7 +7,8 @@ package io.codenode.userprofiles.userInterface
 
 import io.codenode.userprofiles.viewmodel.UserProfilesViewModel
 import io.codenode.userprofiles.userInterface.UserProfiles
-import io.codenode.previewapi.PreviewRegistry
+import io.codenode.previewapi.PreviewComposable
+import io.codenode.previewapi.PreviewSlot
 
 /**
  * Provides preview composables that render UserProfiles components,
@@ -15,13 +16,12 @@ import io.codenode.previewapi.PreviewRegistry
  */
 object UserProfilesPreviewProvider {
 
-    /**
-     * Registers UserProfiles preview composables with the PreviewRegistry.
-     */
-    fun register() {
-        PreviewRegistry.register("UserProfiles") { viewModel, modifier ->
-            val vm = viewModel as UserProfilesViewModel
-            UserProfiles(viewModel = vm, modifier = modifier)
-        }
+    val preview: PreviewComposable = { viewModel, modifier ->
+        val vm = viewModel as UserProfilesViewModel
+        UserProfiles(viewModel = vm, modifier = modifier)
+    }
+
+    fun install() {
+        PreviewSlot.set(preview)
     }
 }

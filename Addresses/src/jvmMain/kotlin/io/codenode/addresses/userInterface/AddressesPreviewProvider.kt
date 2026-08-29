@@ -7,7 +7,8 @@ package io.codenode.addresses.userInterface
 
 import io.codenode.addresses.viewmodel.AddressesViewModel
 import io.codenode.addresses.userInterface.Addresses
-import io.codenode.previewapi.PreviewRegistry
+import io.codenode.previewapi.PreviewComposable
+import io.codenode.previewapi.PreviewSlot
 
 /**
  * Provides preview composables that render Addresses components,
@@ -15,13 +16,12 @@ import io.codenode.previewapi.PreviewRegistry
  */
 object AddressesPreviewProvider {
 
-    /**
-     * Registers Addresses preview composables with the PreviewRegistry.
-     */
-    fun register() {
-        PreviewRegistry.register("Addresses") { viewModel, modifier ->
-            val vm = viewModel as AddressesViewModel
-            Addresses(viewModel = vm, modifier = modifier)
-        }
+    val preview: PreviewComposable = { viewModel, modifier ->
+        val vm = viewModel as AddressesViewModel
+        Addresses(viewModel = vm, modifier = modifier)
+    }
+
+    fun install() {
+        PreviewSlot.set(preview)
     }
 }

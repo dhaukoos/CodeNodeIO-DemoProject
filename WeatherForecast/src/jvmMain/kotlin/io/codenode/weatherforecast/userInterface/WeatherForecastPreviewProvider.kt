@@ -7,7 +7,8 @@ package io.codenode.weatherforecast.userInterface
 
 import io.codenode.weatherforecast.viewmodel.WeatherForecastViewModel
 import io.codenode.weatherforecast.userInterface.WeatherForecastUI
-import io.codenode.previewapi.PreviewRegistry
+import io.codenode.previewapi.PreviewComposable
+import io.codenode.previewapi.PreviewSlot
 
 /**
  * Provides preview composables that render WeatherForecast components,
@@ -15,13 +16,12 @@ import io.codenode.previewapi.PreviewRegistry
  */
 object WeatherForecastPreviewProvider {
 
-    /**
-     * Registers WeatherForecast preview composables with the PreviewRegistry.
-     */
-    fun register() {
-        PreviewRegistry.register("WeatherForecast") { viewModel, modifier ->
-            val vm = viewModel as WeatherForecastViewModel
-            WeatherForecastUI(viewModel = vm, modifier = modifier)
-        }
+    val preview: PreviewComposable = { viewModel, modifier ->
+        val vm = viewModel as WeatherForecastViewModel
+        WeatherForecastUI(viewModel = vm, modifier = modifier)
+    }
+
+    fun install() {
+        PreviewSlot.set(preview)
     }
 }
