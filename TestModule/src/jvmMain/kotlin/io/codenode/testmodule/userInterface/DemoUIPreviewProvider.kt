@@ -9,7 +9,8 @@ package io.codenode.testmodule.userInterface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import io.codenode.testmodule.viewmodel.DemoUIViewModel
-import io.codenode.previewapi.PreviewRegistry
+import io.codenode.previewapi.PreviewComposable
+import io.codenode.previewapi.PreviewSlot
 
 /**
  * Provides preview composables that render DemoUI components,
@@ -21,14 +22,13 @@ import io.codenode.previewapi.PreviewRegistry
  */
 object DemoUIPreviewProvider {
 
-    /**
-     * Registers DemoUI preview composables with the PreviewRegistry.
-     */
-    fun register() {
-        PreviewRegistry.register("DemoUI") { viewModel, modifier ->
-            val vm = viewModel as DemoUIViewModel
-            val state by vm.state.collectAsState()
-            DemoUI(state = state, onEvent = vm::onEvent, modifier = modifier)
-        }
+    val preview: PreviewComposable = { viewModel, modifier ->
+        val vm = viewModel as DemoUIViewModel
+        val state by vm.state.collectAsState()
+        DemoUI(state = state, onEvent = vm::onEvent, modifier = modifier)
+    }
+
+    fun install() {
+        PreviewSlot.set(preview)
     }
 }
