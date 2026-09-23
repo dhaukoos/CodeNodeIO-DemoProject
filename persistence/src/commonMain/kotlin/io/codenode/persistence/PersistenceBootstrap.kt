@@ -8,7 +8,7 @@ package io.codenode.persistence
 import io.codenode.persistence.userprofile.UserProfileDao
 import io.codenode.persistence.address.AddressDao
 import io.codenode.persistence.xycoord.XYCoordDao
-import org.koin.core.context.GlobalContext
+import org.koin.mp.KoinPlatform
 import org.koin.dsl.module
 
 /**
@@ -23,7 +23,7 @@ object PersistenceBootstrap {
      */
     fun registerDaos() {
         try {
-            val koin = GlobalContext.get()
+            val koin = KoinPlatform.getKoin()
             val db = DatabaseModule.getDatabase()
             koin.loadModules(listOf(module {
                 single<UserProfileDao> { db.userProfileDao() }
