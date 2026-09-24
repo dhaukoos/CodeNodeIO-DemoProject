@@ -1,54 +1,37 @@
 /*
- * StopWatchPreviewProvider - Provides StopWatch preview composables for the runtime panel
+ * StopWatchPreviewProvider - Provides StopWatch preview composable for the runtime panel
  * License: Apache 2.0
  */
 
 package io.codenode.stopwatch.userInterface
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import io.codenode.fbpdsl.model.ExecutionState
 import io.codenode.stopwatch.viewmodel.StopWatchViewModel
-import io.codenode.stopwatch.userInterface.StopWatch
-import io.codenode.stopwatch.userInterface.StopWatchScreen
-import io.codenode.previewapi.PreviewRegistry
+import io.codenode.previewapi.PreviewComposable
+import io.codenode.previewapi.PreviewSlot
 
 /**
- * Provides preview composables that render StopWatch components,
- * driven by the RuntimeSession's ViewModel state.
+ * Provides the StopWatchScreen preview composable, driven by the
+ * RuntimeSession's ViewModel state.
+ *
+ * Migration note (feature 130.1): the pre-feature-110 shape registered TWO
+ * previews ("StopWatch" pure-component + "StopWatchScreen"). Feature 110's
+ * PreviewSlot is single-slot per .flow.kt file, and StopWatch has one
+ * (StopWatch.flow.kt). This keeps the StopWatchScreen preview (feature 087
+ * Design B canvas-canonical) and drops the standalone pure-component preview.
  */
 object StopWatchPreviewProvider {
 
-    /**
-     * Registers StopWatch preview composables with the PreviewRegistry.
-     */
-    fun register() {
-        PreviewRegistry.register("StopWatch") { viewModel, modifier ->
-            val vm = viewModel as StopWatchViewModel
-            val seconds by vm.seconds.collectAsState()
-            val minutes by vm.minutes.collectAsState()
-            val executionState by vm.executionState.collectAsState()
-            val isRunning = executionState == ExecutionState.RUNNING
+    val preview: PreviewComposable = { viewModel, modifier ->
+        val vm = viewModel as StopWatchViewModel
+        StopWatchScreen(
+            viewModel = vm,
+            modifier = modifier,
+            minSize = 200.dp
+        )
+    }
 
-            StopWatch(
-                modifier = modifier,
-                minSize = 200.dp,
-                seconds = seconds,
-                minutes = minutes,
-                isRunning = isRunning
-            )
-        }
-
-        PreviewRegistry.register("StopWatchScreen") { viewModel, modifier ->
-            val vm = viewModel as StopWatchViewModel
-            StopWatchScreen(
-                viewModel = vm,
-                modifier = modifier,
-                minSize = 200.dp
-            )
-        }
+    fun install() {
+        PreviewSlot.set(preview)
     }
 }
