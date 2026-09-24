@@ -49,6 +49,8 @@ kotlin {
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
                 // KMP-compatible lifecycle support (works on all platforms)
                 implementation("org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose:2.8.0")
+                // Feature 130.1: adds ViewModel + viewModelScope (needed by XYCoordsViewModel)
+                implementation("org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
                 implementation(project(":iptypes"))
                 implementation(project(":persistence"))
                 implementation("io.insert-koin:koin-core:4.0.0")
