@@ -20,10 +20,37 @@ allprojects {
     version = "0.1.0-SNAPSHOT"
 }
 
-// Configuration to collect all runtime JARs for the graphEditor launch
+// Configuration to collect all runtime JARs for the graphEditor launch.
+//
+// Attribute wiring (2026-09-27): Room 2.7.2 + SQLite 2.5.2 (feature 128 downgrade)
+// publish TWO variants — `jvmRuntimeElements-published` (kotlin platform 'jvm')
+// and `releaseRuntimeElements-published` (kotlin platform 'androidJvm'). Without
+// explicit consumer attributes on this configuration, Gradle can't disambiguate
+// and `./gradlew writeRuntimeClasspath` fails with a variant-selection error.
+// Setting Category/Usage/JvmEnvironment tells Gradle "this config wants the
+// standard-JVM library variant" → Room + SQLite (and any similar multi-variant
+// transitive deps) resolve cleanly.
 val graphEditorRuntime by configurations.creating {
     isCanBeResolved = true
     isCanBeConsumed = false
+    attributes {
+        attribute(
+            Category.CATEGORY_ATTRIBUTE,
+            objects.named(Category::class.java, Category.LIBRARY),
+        )
+        attribute(
+            Usage.USAGE_ATTRIBUTE,
+            objects.named(Usage::class.java, Usage.JAVA_RUNTIME),
+        )
+        attribute(
+            TargetJvmEnvironment.TARGET_JVM_ENVIRONMENT_ATTRIBUTE,
+            objects.named(TargetJvmEnvironment::class.java, TargetJvmEnvironment.STANDARD_JVM),
+        )
+        attribute(
+            Attribute.of("org.jetbrains.kotlin.platform.type", String::class.java),
+            "jvm",
+        )
+    }
 }
 
 dependencies {
